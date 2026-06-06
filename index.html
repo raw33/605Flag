@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>South Dakota Flag Initiative — Public Vote</title>
+<link rel="icon" type="image/png" href="assets/1780708944141%20Background%20Removed.png"/>
+<link rel="apple-touch-icon" href="assets/1780708944141%20Background%20Removed.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Oswald:wght@400;600;700&family=Source+Serif+4:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --sky: #1a6fa3;
+  --gold: #f0a500;
+  --gold-light: #f5c842;
+  --dark: #0d1b28;
+  --slate: #1e3a52;
+  --white: #fdf8f0;
+  --muted: rgba(253,248,240,0.65);
+  --green: #2ecc71;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Source Serif 4', Georgia, serif; background:var(--dark); color:var(--white); overflow-x:hidden; }
+
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0.9rem 2.5rem;
+  background:rgba(13,27,40,0.95); backdrop-filter:blur(10px);
+  border-bottom:2px solid var(--gold);
+}
+.logo { font-family:'Oswald',sans-serif; font-weight:700; font-size:0.95rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); }
+.nav-links { display:flex; gap:2rem; list-style:none; }
+.nav-links a { font-family:'Oswald',sans-serif; font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--white); text-decoration:none; opacity:0.65; transition:opacity 0.2s,color 0.2s; }
+.nav-links a:hover { opacity:1; color:var(--gold); }
+
+/* SHARED */
+section { padding:6rem 2rem 5rem; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+.container { max-width:1060px; width:100%; margin:0 auto; }
+.eyebrow { font-family:'Oswald',sans-serif; font-size:0.68rem; letter-spacing:0.32em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; display:flex; align-items:center; gap:0.65rem; }
+.eyebrow::before { content:''; display:block; width:2rem; height:2px; background:var(--gold); }
+h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4.5vw,3.4rem); font-weight:900; line-height:1.08; margin-bottom:1.1rem; }
+.lead { font-size:clamp(1rem,1.4vw,1.1rem); line-height:1.8; color:var(--muted); max-width:62ch; margin-bottom:2rem; }
+
+/* HERO */
+#hero { min-height:100vh; flex-direction:column; text-align:center; background:var(--dark); }
+#hero::before { content:''; position:absolute; inset:0; pointer-events:none; background: radial-gradient(ellipse 70% 55% at 50% 0%, rgba(240,165,0,0.15) 0%, transparent 70%), radial-gradient(ellipse 50% 50% at 15% 85%, rgba(26,111,163,0.2) 0%, transparent 60%); }
+#hero::after { content:''; position:absolute; bottom:0; left:0; right:0; height:4px; background:linear-gradient(90deg, var(--sky), var(--gold), var(--sky)); }
+.hero-sun { width:100px; height:100px; margin:0 auto 1.8rem; animation:spin-slow 45s linear infinite; }
+@keyframes spin-slow { to { transform:rotate(360deg); } }
+.hero-title { font-family:'Playfair Display',serif; font-size:clamp(2.8rem,7vw,6rem); font-weight:900; line-height:1; margin-bottom:0.4rem; }
+.hero-title .accent { color:var(--gold); }
+.hero-sub { font-size:clamp(1rem,1.8vw,1.35rem); font-style:italic; font-weight:300; opacity:0.6; margin-bottom:2rem; }
+.hero-rule { width:3.5rem; height:3px; background:var(--gold); margin:0 auto 1.8rem; }
+.hero-cta { font-family:'Oswald',sans-serif; font-size:1rem; letter-spacing:0.1em; text-transform:uppercase; opacity:0.8; max-width:46ch; margin:0 auto 2.5rem; }
+.scroll-hint { display:flex; flex-direction:column; align-items:center; gap:0.4rem; opacity:0.4; margin-top:2rem; }
+.scroll-hint span { font-family:'Oswald',sans-serif; font-size:0.6rem; letter-spacing:0.3em; text-transform:uppercase; }
+.scroll-line { width:1px; height:36px; background:var(--gold); animation:pulse-line 2s ease infinite; }
+@keyframes pulse-line { 0%,100%{opacity:0.3;} 50%{opacity:1;} }
+
+/* HISTORY */
+#history { background:#102234; }
+.history-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; margin-top:2rem; }
+.history-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:6px; overflow:hidden; }
+.history-card img, .history-card svg { width:100%; aspect-ratio:3/2; object-fit:contain; background:rgba(255,255,255,0.03); display:block; padding:0.65rem; }
+.history-card-body { padding:1.15rem; }
+.history-card h3 { font-family:'Playfair Display',serif; color:var(--gold-light); font-size:1.15rem; margin-bottom:0.45rem; }
+.history-card p { color:var(--muted); font-size:0.9rem; line-height:1.6; }
+
+/* COMPARISON */
+#comparison { background:var(--slate); }
+.compare-grid { display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start; margin-top:2.5rem; }
+.flag-panel { display:flex; flex-direction:column; gap:1rem; }
+.panel-label { font-family:'Oswald',sans-serif; font-size:0.68rem; letter-spacing:0.25em; text-transform:uppercase; display:inline-flex; align-items:center; gap:0.5rem; padding:0.3rem 0.8rem; border-radius:2px; width:fit-content; }
+.panel-label.old { background:rgba(200,60,60,0.2); color:#ff8080; border:1px solid rgba(200,60,60,0.35); }
+.panel-label.new { background:rgba(240,165,0,0.15); color:var(--gold); border:1px solid rgba(240,165,0,0.35); }
+.flag-render { aspect-ratio:3/2; border-radius:4px; overflow:hidden; box-shadow:0 12px 40px rgba(0,0,0,0.5); background:rgba(0,0,0,0.14); display:flex; align-items:center; justify-content:center; }
+.flag-render svg, .flag-render img { display:block; width:100%; height:100%; object-fit:contain; }
+.flag-render img[src*="bg-removed"],
+.flag-render img[src*="Background Removed"] { object-fit:cover; }
+.flag-caption { font-size:0.92rem; color:var(--muted); line-height:1.65; }
+.flag-caption strong { color:var(--white); }
+.concept-picker { display:flex; flex-wrap:wrap; gap:0.6rem; margin:1.5rem 0 0; }
+.concept-picker button {
+  font-family:'Oswald',sans-serif;
+  font-size:0.64rem;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+  background:rgba(255,255,255,0.045);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:3px;
+  padding:0.55rem 0.75rem;
+  cursor:pointer;
+  transition:background 0.2s,border-color 0.2s,color 0.2s;
+}
+.concept-picker button:hover, .concept-picker button.active { background:rgba(240,165,0,0.13); border-color:rgba(240,165,0,0.55); color:var(--gold-light); }
+.history-note {
+  margin:2.25rem 0 0;
+  display:grid;
+  grid-template-columns:170px 1fr;
+  gap:1.25rem;
+  align-items:center;
+  background:rgba(0,0,0,0.24);
+  border:1px solid rgba(255,255,255,0.08);
+  border-left:3px solid var(--gold);
+  border-radius:6px;
+  padding:1.1rem;
+}
+.history-note img { width:100%; border-radius:3px; box-shadow:0 8px 24px rgba(0,0,0,0.3); }
+.history-note h3 { font-family:'Playfair Display',serif; color:var(--gold-light); font-size:1.25rem; margin-bottom:0.35rem; }
+.history-note p { color:var(--muted); font-size:0.94rem; line-height:1.65; }
+.history-note a { color:var(--gold-light); text-decoration:none; border-bottom:1px solid rgba(245,200,66,0.45); }
+.history-note a:hover { color:var(--white); border-bottom-color:var(--white); }
+
+/* DISTANCE DEMO */
+.distance-demo { margin-top:3rem; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.07); border-radius:6px; padding:2rem; text-align:center; }
+.distance-demo h3 { font-family:'Playfair Display',serif; font-size:1.25rem; font-weight:700; color:var(--gold-light); margin-bottom:0.4rem; }
+.distance-demo > p { font-size:0.95rem; color:var(--muted); margin:0 auto 1.5rem; max-width:82ch; }
+.distance-compare {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  gap:1.5rem;
+  align-items:center;
+  justify-items:center;
+}
+.distance-group {
+  display:flex;
+  gap:1rem;
+  align-items:flex-end;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.blur-item { display:flex; flex-direction:column; align-items:center; gap:0.4rem; }
+.distance-separator {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3rem,6vw,5.4rem);
+  font-weight:900;
+  line-height:1;
+  color:var(--gold);
+  opacity:0.8;
+  padding:0 0.35rem;
+  align-self:center;
+}
+.dist-label { font-family:'Oswald',sans-serif; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; opacity:0.5; }
+.blur-flag { width:110px; height:73px; border-radius:2px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.4); background:rgba(0,0,0,0.18); display:flex; align-items:center; justify-content:center; }
+.blur-flag img { display:block; width:100%; height:100%; object-fit:contain; }
+.blur-flag img[src*="bg-removed"],
+.blur-flag img[src*="Background Removed"] { object-fit:cover; }
+
+/* ECONOMIC */
+#economic { background:var(--dark); }
+#economic::before { content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 60% 60% at 85% 50%, rgba(26,111,163,0.1) 0%, transparent 65%); }
+.econ-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; margin-top:2rem; }
+.econ-card { background:rgba(240,165,0,0.07); border:1px solid rgba(240,165,0,0.2); border-top:3px solid var(--gold); border-radius:4px; padding:1.5rem 1.25rem; transition:transform 0.25s,background 0.25s; }
+.econ-card:hover { transform:translateY(-3px); background:rgba(240,165,0,0.12); }
+.econ-icon { font-size:1.6rem; margin-bottom:0.65rem; }
+.econ-card h4 { font-family:'Oswald',sans-serif; font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold-light); margin-bottom:0.4rem; }
+.econ-card p { font-size:0.9rem; color:var(--muted); line-height:1.6; }
+
+/* VOTE SECTION */
+#vote { background:linear-gradient(170deg, #0a1620 0%, #0f2a40 50%, #0a1620 100%); }
+.vote-intro { text-align:center; margin-bottom:3rem; }
+.vote-intro .eyebrow { justify-content:center; }
+.vote-intro h2 { max-width:22ch; margin:0 auto 1rem; }
+.vote-intro .lead { margin:0 auto 0.5rem; text-align:center; }
+.vote-notice {
+  display:inline-flex; align-items:center; gap:0.6rem;
+  background:rgba(240,165,0,0.1); border:1px solid rgba(240,165,0,0.3);
+  border-radius:3px; padding:0.6rem 1.2rem; margin-top:1rem;
+  font-family:'Oswald',sans-serif; font-size:0.7rem;
+  letter-spacing:0.15em; text-transform:uppercase; color:var(--gold);
+}
+.poll-feedback {
+  margin:-0.75rem auto 2.5rem;
+  max-width:760px;
+  background:rgba(0,0,0,0.24);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:6px;
+  padding:1.5rem;
+}
+.poll-feedback h3 { font-family:'Playfair Display',serif; font-size:1.25rem; color:var(--gold-light); margin-bottom:0.4rem; }
+.poll-feedback p { color:var(--muted); font-size:0.92rem; line-height:1.6; margin-bottom:1rem; }
+.poll-grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:0.8rem; }
+.poll-field { display:flex; flex-direction:column; gap:0.35rem; }
+.poll-field.full { grid-column:1/-1; }
+.poll-field label { font-family:'Oswald',sans-serif; font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase; color:rgba(253,248,240,0.62); }
+.poll-field input, .poll-field textarea {
+  width:100%;
+  border:1px solid rgba(255,255,255,0.14);
+  background:rgba(255,255,255,0.06);
+  color:var(--white);
+  border-radius:3px;
+  padding:0.75rem 0.85rem;
+  font:inherit;
+}
+.poll-field textarea { min-height:96px; resize:vertical; }
+.poll-field input:focus, .poll-field textarea:focus { outline:2px solid rgba(240,165,0,0.42); border-color:rgba(240,165,0,0.55); }
+.poll-status { margin-top:1rem; font-size:0.86rem; color:var(--muted); line-height:1.55; }
+.poll-status.success { color:var(--green); }
+.poll-status.warning { color:var(--gold-light); }
+.poll-note {
+  margin-top:0.85rem;
+  font-size:0.8rem;
+  line-height:1.55;
+  color:rgba(253,248,240,0.58);
+}
+.poll-note strong { color:var(--white); }
+
+/* Vote cards grid */
+.vote-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:2rem; margin-bottom:3rem; }
+.vote-card {
+  background:rgba(255,255,255,0.04);
+  border:2px solid rgba(255,255,255,0.08);
+  border-radius:8px; overflow:hidden;
+  transition:transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  cursor:pointer; position:relative;
+}
+.vote-card:hover { transform:translateY(-4px); border-color:rgba(240,165,0,0.5); box-shadow:0 16px 40px rgba(0,0,0,0.4); }
+.vote-card.selected { border-color:var(--gold); box-shadow:0 0 0 3px rgba(240,165,0,0.25), 0 16px 40px rgba(0,0,0,0.4); }
+.vote-card.voted-for { border-color:var(--green); box-shadow:0 0 0 3px rgba(46,204,113,0.25); }
+.card-img-wrap { position:relative; overflow:hidden; }
+.card-img-wrap img, .card-img-wrap svg { width:100%; display:block; }
+.vote-card .card-img-wrap { background:rgba(0,0,0,0.22); }
+.vote-card .card-img-wrap img { aspect-ratio:16/9; object-fit:contain; padding:0.45rem; }
+.vote-card .card-img-wrap img[src*="bg-removed"],
+.vote-card .card-img-wrap img[src*="Background Removed"] { object-fit:cover; padding:0; }
+.card-badge {
+  position:absolute; top:0.75rem; left:0.75rem;
+  font-family:'Oswald',sans-serif; font-size:0.58rem;
+  letter-spacing:0.2em; text-transform:uppercase;
+  padding:0.25rem 0.6rem; border-radius:2px;
+  background:rgba(13,27,40,0.85); color:var(--gold);
+  border:1px solid rgba(240,165,0,0.4);
+}
+.card-body { padding:1.25rem 1.5rem 1.5rem; }
+.card-title { font-family:'Playfair Display',serif; font-size:1.15rem; font-weight:700; color:var(--white); margin-bottom:0.4rem; }
+.card-desc { font-size:0.88rem; color:var(--muted); line-height:1.6; margin-bottom:1.1rem; }
+.credit-link {
+  display:inline-block;
+  margin-top:-0.45rem;
+  margin-bottom:0.85rem;
+  font-family:'Oswald',sans-serif;
+  font-size:0.58rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:rgba(253,248,240,0.58);
+  text-decoration:none;
+}
+.credit-link:hover { color:var(--gold-light); }
+.card-meta { display:flex; justify-content:space-between; align-items:center; }
+.vote-count { font-family:'Oswald',sans-serif; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); }
+.vote-count span { color:var(--gold); font-size:1.1rem; font-weight:700; }
+
+.vote-btn {
+  font-family:'Oswald',sans-serif; font-size:0.75rem; font-weight:700;
+  letter-spacing:0.18em; text-transform:uppercase;
+  padding:0.55rem 1.25rem; border-radius:3px; border:none; cursor:pointer;
+  background:var(--gold); color:var(--dark);
+  transition:background 0.2s, transform 0.15s;
+}
+.vote-btn:hover { background:var(--gold-light); transform:scale(1.03); }
+.vote-btn:disabled { background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.3); cursor:not-allowed; transform:none; }
+.vote-btn.voted { background:var(--green); color:#fff; }
+
+/* Progress bar */
+.bar-wrap { margin-top:0.6rem; }
+.bar-bg { height:6px; background:rgba(255,255,255,0.07); border-radius:3px; overflow:hidden; }
+.bar-fill { height:100%; background:var(--gold); border-radius:3px; transition:width 0.6s ease; }
+.bar-fill.green { background:var(--green); }
+
+/* Vote tally panel */
+.tally-panel {
+  background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.07);
+  border-radius:6px; padding:2rem; text-align:center;
+}
+.tally-panel h3 { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:700; color:var(--gold-light); margin-bottom:1.5rem; }
+.tally-row { display:flex; align-items:center; gap:1rem; margin-bottom:1rem; }
+.tally-name { font-family:'Oswald',sans-serif; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; width:180px; text-align:right; color:var(--white); flex-shrink:0; }
+.tally-bar-bg { flex:1; height:10px; background:rgba(255,255,255,0.07); border-radius:5px; overflow:hidden; }
+.tally-bar-fill { height:100%; background:var(--gold); border-radius:5px; transition:width 0.8s ease; }
+.tally-num { font-family:'Oswald',sans-serif; font-size:0.85rem; font-weight:700; color:var(--gold); width:40px; text-align:left; flex-shrink:0; }
+.total-votes { font-family:'Oswald',sans-serif; font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; opacity:0.45; margin-top:1.5rem; }
+.tally-panel.locked {
+  position:relative;
+}
+.tally-panel.locked .tally-row,
+.tally-panel.locked .total-votes {
+  filter:blur(3px);
+  user-select:none;
+  pointer-events:none;
+}
+.tally-lock {
+  display:none;
+  position:absolute;
+  inset:1rem;
+  border-radius:6px;
+  background:rgba(7,19,29,0.72);
+  border:1px solid rgba(240,165,0,0.22);
+  backdrop-filter:blur(6px);
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:1.25rem;
+  font-family:'Oswald',sans-serif;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--gold-light);
+  z-index:2;
+}
+.tally-panel.locked .tally-lock { display:flex; }
+.tally-lock span {
+  display:block;
+  max-width:26ch;
+  line-height:1.55;
+}
+
+/* Voted confirmation */
+.voted-msg {
+  display:none; text-align:center; margin-top:2rem;
+  padding:1.5rem; background:rgba(46,204,113,0.1);
+  border:1px solid rgba(46,204,113,0.3); border-radius:6px;
+}
+.voted-msg.show { display:block; }
+.voted-msg p { color:var(--green); font-family:'Oswald',sans-serif; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; }
+
+/* SAMPLE */
+#sample { background:linear-gradient(160deg,#0a1620 0%,#16344f 50%,#0a1620 100%); }
+.sample-grid { display:grid; grid-template-columns:1fr 1fr; gap:3.5rem; align-items:center; margin-top:2rem; }
+.flag-frame { position:relative; }
+.flag-frame::before { content:''; position:absolute; inset:-7px; border:1px solid rgba(240,165,0,0.3); border-radius:5px; }
+.flag-frame::after { content:'RICH FINAL DESIGN'; position:absolute; top:-2.2rem; left:0; font-family:'Oswald',sans-serif; font-size:0.62rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold); opacity:0.75; }
+.flag-frame img, .flag-frame svg { width:100%; aspect-ratio:16/9; object-fit:contain; display:block; border-radius:3px; box-shadow:0 16px 50px rgba(0,0,0,0.55); }
+.flag-frame img[src*="bg-removed"],
+.flag-frame img[src*="Background Removed"] { object-fit:cover; }
+.design-notes h3 { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:var(--gold-light); margin-bottom:0.8rem; }
+.design-notes p { font-size:0.97rem; color:var(--muted); line-height:1.75; margin-bottom:1.2rem; }
+.tags { display:flex; flex-wrap:wrap; gap:0.45rem; margin-bottom:1.25rem; }
+.tag { font-family:'Oswald',sans-serif; font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase; padding:0.28rem 0.75rem; background:rgba(240,165,0,0.12); border:1px solid rgba(240,165,0,0.3); color:var(--gold-light); border-radius:2px; }
+.bullets { list-style:none; }
+.bullets li { display:flex; gap:0.7rem; align-items:flex-start; font-size:0.93rem; color:var(--muted); line-height:1.6; margin-bottom:0.7rem; }
+.bullets li::before { content:'\25C6'; color:var(--gold); font-size:0.55rem; margin-top:0.45rem; flex-shrink:0; }
+.bullets li strong { color:var(--white); }
+.primary-designs { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; margin-top:3rem; }
+.design-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:6px; overflow:hidden; }
+.design-card.featured { border-color:rgba(240,165,0,0.45); box-shadow:0 0 0 2px rgba(240,165,0,0.12); }
+.design-card.previewable { cursor:pointer; transition:transform 0.22s,border-color 0.22s,box-shadow 0.22s; }
+.design-card.previewable:hover, .design-card.previewable.active { transform:translateY(-3px); border-color:rgba(240,165,0,0.55); box-shadow:0 14px 36px rgba(0,0,0,0.32); }
+.design-card img { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; }
+.design-card-body { padding:1.1rem; }
+.design-card h4 { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--gold-light); margin-bottom:0.45rem; }
+.design-card p { color:var(--muted); font-size:0.88rem; line-height:1.55; }
+.other-concepts { margin-top:2rem; }
+.other-concepts h3 { font-family:'Playfair Display',serif; font-size:1.25rem; color:var(--gold-light); margin-bottom:0.9rem; }
+.other-concepts-note {
+  font-size:0.82rem;
+  line-height:1.6;
+  color:var(--muted);
+  max-width:70ch;
+  margin:-0.4rem 0 1rem;
+}
+.concept-strip { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:0.85rem; }
+.concept-strip img { width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:4px; border:1px solid rgba(255,255,255,0.08); box-shadow:0 8px 24px rgba(0,0,0,0.28); }
+.explain-panel { margin-top:3rem; background:rgba(0,0,0,0.28); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:2rem; }
+.explain-panel h3 { font-family:'Playfair Display',serif; font-size:1.45rem; color:var(--gold-light); margin-bottom:0.75rem; }
+.explain-panel h4 { font-family:'Oswald',sans-serif; font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin:1.35rem 0 0.35rem; }
+.explain-panel p { color:var(--muted); font-size:0.95rem; line-height:1.72; margin-bottom:0.75rem; }
+.explain-panel strong { color:var(--white); }
+
+/* PERSONAL NOTE */
+#personal { background:#0a1620; padding:4rem 2rem; }
+.personal-note {
+  max-width:820px;
+  margin:0 auto;
+  border:1px solid rgba(240,165,0,0.22);
+  border-top:3px solid var(--gold);
+  background:rgba(255,255,255,0.035);
+  border-radius:6px;
+  padding:2rem;
+}
+.personal-note h2 { font-size:clamp(1.55rem,3vw,2.2rem); }
+.personal-note p { color:var(--muted); font-size:1rem; line-height:1.75; margin-bottom:1rem; }
+.personal-note strong { color:var(--white); }
+
+/* SUBMIT */
+#submit { background:var(--gold); color:var(--dark); padding:5rem 2rem; text-align:center; }
+#submit .eyebrow { color:rgba(13,27,40,0.55); justify-content:center; }
+#submit .eyebrow::before { background:rgba(13,27,40,0.4); }
+#submit h2 { color:var(--dark); max-width:18ch; margin:0 auto 0.75rem; }
+#submit .lead { color:rgba(13,27,40,0.7); margin:0 auto 2.5rem; text-align:center; }
+.submit-card { max-width:600px; margin:0 auto; background:var(--dark); color:var(--white); border-radius:6px; padding:2.25rem 2rem; text-align:left; box-shadow:0 16px 50px rgba(0,0,0,0.3); }
+.submit-card h4 { font-family:'Oswald',sans-serif; font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; }
+.checklist { list-style:none; margin-bottom:1.75rem; }
+.checklist li { display:flex; gap:0.7rem; align-items:flex-start; font-size:0.92rem; color:var(--muted); line-height:1.6; margin-bottom:0.65rem; }
+.check-icon { width:1.3rem; height:1.3rem; min-width:1.3rem; border:2px solid var(--gold); border-radius:2px; display:flex; align-items:center; justify-content:center; color:var(--gold); font-size:0.72rem; margin-top:0.1rem; }
+.submit-btn { display:inline-flex; align-items:center; justify-content:center; gap:0.65rem; width:100%; background:var(--gold); color:var(--dark); font-family:'Oswald',sans-serif; font-size:0.88rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; text-decoration:none; padding:1rem 2rem; border-radius:3px; transition:background 0.2s,transform 0.2s; }
+.submit-btn:hover { background:var(--gold-light); transform:translateY(-2px); }
+.submit-note { margin-top:1rem; font-size:0.8rem; color:var(--muted); text-align:center; font-style:italic; }
+
+/* FOOTER */
+footer { background:#060e18; padding:2rem; border-top:2px solid rgba(240,165,0,0.15); text-align:center; }
+footer p { font-family:'Oswald',sans-serif; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; opacity:0.35; }
+
+.fade-in { opacity:0; transform:translateY(24px); transition:opacity 0.75s ease,transform 0.75s ease; }
+.fade-in.visible { opacity:1; transform:translateY(0); }
+
+@media(max-width:760px){
+  section { padding:5rem 1rem 4rem; }
+  .nav-links { display:none; }
+  nav { padding:0.85rem 1rem; }
+  .compare-grid, .econ-grid, .sample-grid, .history-grid { grid-template-columns:1fr; }
+  .compare-grid { gap:2rem; }
+  .panel-label { max-width:100%; font-size:0.58rem; letter-spacing:0.18em; line-height:1.45; }
+  .concept-picker { gap:0.45rem; }
+  .concept-picker button { flex:1 1 calc(50% - 0.45rem); padding:0.55rem 0.5rem; }
+  .primary-designs { grid-template-columns:1fr; }
+  .history-note { grid-template-columns:1fr; }
+  .distance-demo { padding:1.35rem 0.85rem; }
+  .distance-compare { grid-template-columns:1fr; gap:1.1rem; }
+  .distance-separator { font-size:clamp(2.8rem,12vw,4rem); }
+  .blur-flag { width:clamp(70px, 22vw, 110px); height:clamp(47px, 14.6vw, 73px); }
+  .vote-cards { grid-template-columns:1fr; }
+  .card-meta { align-items:flex-start; gap:0.75rem; flex-direction:column; }
+  .tally-name { width:120px; }
+  .poll-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">SD Flag Initiative</div>
+  <ul class="nav-links">
+    <li><a href="#history">Past Flags</a></li>
+    <li><a href="#sample">Final Design</a></li>
+    <li><a href="#comparison">Old vs. New</a></li>
+    <li><a href="#vote">Opinion Poll</a></li>
+    <li><a href="#economic">Economic Case</a></li>
+    <li><a href="#submit">Submit Art</a></li>
+    <li><a href="sd_flag_swypr.html">Swipe Story</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container" style="position:relative;z-index:1;">
+    <svg class="hero-sun" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="22" fill="#f0a500"/>
+      <g fill="#f0a500">
+        <polygon points="50,4 54,18 46,18"/>
+        <polygon points="50,96 54,82 46,82"/>
+        <polygon points="4,50 18,54 18,46"/>
+        <polygon points="96,50 82,54 82,46"/>
+        <polygon points="15,15 26,27 17,33"/>
+        <polygon points="85,15 74,27 83,33"/>
+        <polygon points="15,85 26,73 17,67"/>
+        <polygon points="85,85 74,73 83,67"/>
+      </g>
+    </svg>
+    <p class="eyebrow" style="justify-content:center;">A Civic &amp; Economic Initiative</p>
+    <h1 class="hero-title">It's Time for a New<br/><span class="accent">South Dakota Flag</span></h1>
+    <p class="hero-sub">Bold enough to be seen. Simple enough to be remembered.</p>
+    <div class="hero-rule"></div>
+    <p class="hero-cta">Your vote helps a volunteer committee bring a single unified proposal to South Dakota legislators for formal consideration.</p>
+    <div class="scroll-hint">
+      <span>See the case &amp; vote</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PAST STATE FLAGS -->
+<section id="history">
+  <div class="container">
+    <div class="fade-in">
+      <p class="eyebrow">Past State Flags</p>
+      <h2>South Dakota Has<br/><em>Changed Its Flag Before.</em></h2>
+      <p class="lead">The question is not whether a flag can evolve. It already has. The question is whether the next change finally makes the flag clearer, more memorable, and more useful as a symbol for South Dakota.</p>
+    </div>
+
+    <div class="history-grid fade-in">
+      <div class="history-card">
+        <img src="assets/1909-original-flag.png" alt="South Dakota's original 1909 state flag" loading="lazy" decoding="async"/>
+        <div class="history-card-body">
+          <h3>1909: The Original Flag</h3>
+          <p>South Dakota's first official flag used a sun motif on one side and the state seal on the other. It already understood something important: a flag needs a bold symbol.</p>
+        </div>
+      </div>
+      <div class="history-card">
+        <img src="assets/Flag_of_South_Dakota.svg.png" alt="Current South Dakota state flag" loading="lazy" decoding="async"/>
+        <div class="history-card-body">
+          <h3>1992: A New Nickname, Same Problem</h3>
+          <p>The wording changed to "The Mount Rushmore State," but the basic seal-on-blue approach remained. It still struggles at distance, on merchandise, and in small digital spaces.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="history-note fade-in">
+      <img src="assets/1909-original-flag.png" alt="South Dakota's original state flag" loading="lazy" decoding="async"/>
+      <div>
+        <h3>A quick source for the backstory.</h3>
+        <p>The unofficial <a href="https://sodakgovs.com/2023/12/11/the-history-and-future-of-south-dakotas-state-flag/" target="_blank" rel="noopener noreferrer">SoDak Governors history of South Dakota's flag</a> walks through the 1909 original, the 1963 redesign, and the 1992 nickname update. The lesson is simple: we have changed it before. This time, we can do better.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OLD VS NEW -->
+<section id="comparison">
+  <div class="container">
+    <div class="fade-in">
+      <p class="eyebrow">Old vs. New</p>
+      <h2>A Flag Is Not a Seal.<br/><em>They Serve Different Purposes.</em></h2>
+      <p class="lead">A state seal belongs on a document — up close, packed with historical detail. A flag belongs on a pole, a jersey, a storefront. It must be instantly readable from 100 feet away. Right now, South Dakota's flag fails that test completely.</p>
+      <div class="concept-picker" aria-label="Choose a proposed flag to compare">
+        <button class="active" type="button" data-preview-option="rich">Rich 3.0</button>
+        <button type="button" data-preview-option="cgp">CGP Grey-Inspired</button>
+        <button type="button" data-preview-option="solar">Solar Horizon</button>
+        <button type="button" data-preview-option="other">Other Concept</button>
+        <button type="button" data-preview-option="original">Original 1909</button>
+      </div>
+    </div>
+    <div class="compare-grid fade-in">
+      <!-- OLD FLAG SVG -->
+      <div class="flag-panel">
+        <span class="panel-label old">&#10007; Current Flag &#8212; 1992</span>
+        <div class="flag-render">
+          <img src="assets/Flag_of_South_Dakota.svg.png" alt="Current South Dakota state flag" loading="lazy" decoding="async"/>
+        </div>
+        <p class="flag-caption"><strong>The problem:</strong> South Dakota's 1992 flag crams the entire Great Seal — farmsteads, steamboats, miners, and legal text — onto a blue field nearly identical to dozens of other states. On a flagpole at 50 feet it is an unreadable smudge. The seal belongs on documents, not flags.</p>
+      </div>
+      <!-- NEW FLAG (embedded) -->
+      <div class="flag-panel">
+        <span class="panel-label new" id="comparisonDesignLabel">&#10003; Rich's Final Design &#8212; Subject to Public Vote</span>
+        <div class="flag-render">
+          <img id="proposedFlagImg" src="assets/rich-final-design.png" alt="Rich's 3.0 South Dakota flag design" loading="lazy" decoding="async"/>
+        </div>
+        <p class="flag-caption" id="comparisonDesignCaption"><strong>The opportunity:</strong> A narrative-driven redesign that still keeps the flag language clean: South Dakota blue, a unified Missouri River, a Sunshine State sun, West River heritage, East River agriculture, and symbols that tell the state's story without text or a seal.</p>
+      </div>
+    </div>
+    <!-- DISTANCE TEST -->
+    <div class="distance-demo fade-in">
+      <h3>The Distance Test — How Flags Are Actually Seen</h3>
+      <p>Flags are not read — they are recognized in an instant. As distance increases, fine detail collapses into noise. A seal designed for close inspection becomes invisible on a flagpole. A bold symbol holds its identity at every scale.</p>
+      <div class="distance-compare">
+        <div class="distance-group">
+          <div class="blur-item">
+            <div class="blur-flag">
+              <img src="assets/Flag_of_South_Dakota.svg.png" width="120" height="80" alt="Current South Dakota flag up close" loading="lazy" decoding="async"/>
+            </div>
+            <span class="dist-label">Up close</span>
+          </div>
+          <div class="blur-item">
+            <div class="blur-flag" style="filter:blur(1px);">
+              <img src="assets/Flag_of_South_Dakota.svg.png" width="120" height="80" alt="Current South Dakota flag at 50 feet" loading="lazy" decoding="async"/>
+            </div>
+            <span class="dist-label">50 ft</span>
+          </div>
+          <div class="blur-item">
+            <div class="blur-flag" style="filter:blur(2.5px);">
+              <img src="assets/Flag_of_South_Dakota.svg.png" width="120" height="80" alt="Current South Dakota flag at 100 feet" loading="lazy" decoding="async"/>
+            </div>
+            <span class="dist-label">100 ft</span>
+          </div>
+          <div class="blur-item">
+            <div class="blur-flag" style="filter:blur(4.5px);">
+              <img src="assets/Flag_of_South_Dakota.svg.png" width="120" height="80" alt="Current South Dakota flag at 200 feet" loading="lazy" decoding="async"/>
+            </div>
+            <span class="dist-label">200 ft</span>
+          </div>
+        </div>
+        <div class="distance-separator" aria-hidden="true">#</div>
+        <div class="distance-group">
+          <div class="blur-item">
+            <div class="blur-flag">
+              <img id="demoNew0" src="assets/rich-final-design.png" width="120" height="80" alt="Rich's 3.0 flag design up close" loading="lazy" decoding="async"/>
+            </div>
+            <span class="dist-label">Up close</span>
+          </div>
+          <div class="blur-item">
+            <div class="blur-flag" style="filter:blur(1px);">
+              <img id="demoNew1" src="assets/rich-final-design.png" width="120" height="80" alt="Rich's 3.0 flag design at 50 feet" loading="lazy" decoding="async"/>
+            </div>
+            <span class="dist-label">50 ft</span>
+          </div>
+          <div class="blur-item">
+            <div class="blur-flag" style="filter:blur(1.8px);">
+              <img id="demoNew2" src="assets/rich-final-design.png" width="120" height="80" alt="Rich's 3.0 flag design at 100 feet" loading="lazy" decoding="async"/>
+            </div>
+            <span class="dist-label">100 ft</span>
+          </div>
+          <div class="blur-item">
+            <div class="blur-flag" style="filter:blur(2.8px);">
+              <img id="demoNew3" src="assets/rich-final-design.png" width="120" height="80" alt="Rich's 3.0 flag design at 200 feet" loading="lazy" decoding="async"/>
+            </div>
+            <span class="dist-label">200 ft</span>
+          </div>
+        </div>
+      </div>
+      <p id="distanceSummary" style="margin-top:1.25rem; font-size:0.85rem; color:var(--muted); font-style:italic;">At 200 feet, the current flag becomes an anonymous blue field. Rich's 3.0 design keeps its main read: blue field, gold state symbols, and a central river shape.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL DESIGN -->
+<section id="sample">
+  <div class="container">
+    <div class="fade-in">
+      <p class="eyebrow">Design Progression</p>
+      <h2>From Flag Principles<br/><em>to a South Dakota Story.</em></h2>
+      <p class="lead">The design path starts with the basic flag question popularized by CGP Grey-style critiques: can it be recognized from far away? From there, the concept moves into a sun-and-Missouri-River identity, then into Rich's 3.0 final recommendation.</p>
+    </div>
+
+    <div class="primary-designs fade-in">
+      <div class="design-card previewable" data-preview-option="cgp" tabindex="0" role="button">
+        <img src="assets/cgp-grey-inspired-design-bg-removed.png" alt="CGP Grey-inspired South Dakota flag concept" loading="lazy" decoding="async"/>
+        <div class="design-card-body">
+          <h4>Step 1: CGP Grey-Inspired Concept</h4>
+          <p>A cleaner flag-study direction influenced by modern flag-design principles: stronger symbols, fewer moving parts, and better distance readability.</p>
+          <a class="credit-link" href="https://www.youtube.com/watch?t=189&si=HkSbiBZAYKMV9nf7&v=l4w6808wJcU&feature=youtu.be" target="_blank" rel="noopener noreferrer">Inspiration: CGP Grey YouTube video</a>
+        </div>
+      </div>
+      <div class="design-card previewable" data-preview-option="solar" tabindex="0" role="button">
+        <img src="assets/solar-horizon-design.png" alt="Solar Horizon South Dakota flag concept" loading="lazy" decoding="async"/>
+        <div class="design-card-body">
+          <h4>Step 2: Solar Horizon</h4>
+          <p>The next simplified direction: a bold sun, Dakota blue, and a Missouri River form. This concept helped establish the color story and the distance-test logic.</p>
+        </div>
+      </div>
+      <div class="design-card featured previewable active" data-preview-option="rich" tabindex="0" role="button">
+        <img src="assets/rich-final-design.png" alt="Rich's 3.0 South Dakota flag design" loading="lazy" decoding="async"/>
+        <div class="design-card-body">
+          <h4>Step 3: Rich's 3.0 Design</h4>
+          <p>The final recommendation, bringing West River, East River, the Missouri River, agriculture, wildlife, Indigenous homage, and the Sunshine State identity into one design.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sample-grid fade-in">
+      <div class="flag-frame">
+        <img src="assets/rich-final-design.png" alt="Rich's 3.0 South Dakota flag design" loading="lazy" decoding="async"/>
+      </div>
+      <div class="design-notes">
+        <h3>Rich 3.0 design explained</h3>
+        <p>This design serves as a visually striking, deeply meaningful representation of South Dakota's rich heritage, diverse geography, and cultural identity. By combining clean vexillological geometry with symbolic regional elements, the artwork tells a complete story of the state from West River to East River.</p>
+        <div class="tags">
+          <span class="tag">West River</span>
+          <span class="tag">East River</span>
+          <span class="tag">Buffalo</span>
+          <span class="tag">Pheasant</span>
+          <span class="tag">Missouri River</span>
+          <span class="tag">Sunshine State</span>
+        </div>
+        <ul class="bullets">
+          <li><strong>West River:</strong> The bison, Indigenous pattern work, and Black Hills Spruce anchor the left side in prairie, tribal heritage, and western geography.</li>
+          <li><strong>East River:</strong> The ring-necked pheasant, soybean-inspired feather forms, corn stalk, and deciduous tree point to agriculture and eastern river valleys.</li>
+          <li><strong>Unified center:</strong> The Missouri River ties both halves together beneath a South Dakota sun, using a controlled blue, gold, and river-blue palette.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="other-concepts fade-in">
+      <h3>Other designs submitted</h3>
+      <p class="other-concepts-note">We want this to be a community engagement effort, and we would love to have artists submit their own designs.</p>
+      <div class="concept-strip">
+        <img src="assets/1780708840131 Background Removed.png" alt="South Dakota flag concept option" loading="lazy" decoding="async"/>
+        <img src="assets/1780708944141 Background Removed.png" alt="South Dakota flag concept option" loading="lazy" decoding="async"/>
+        <img src="assets/1780708974833 Background Removed.png" alt="South Dakota flag concept option" loading="lazy" decoding="async"/>
+        <img src="assets/1780708999353 Background Removed.png" alt="South Dakota flag concept option" loading="lazy" decoding="async"/>
+        <img src="assets/Gemini_Generated_Image_9cr89p9cr89p9cr8 Background Removed.png" alt="South Dakota flag concept option" loading="lazy" decoding="async"/>
+        <img src="assets/Gemini_Generated_Image_uu5of4uu5of4uu5o Background Removed.png" alt="South Dakota flag concept option" loading="lazy" decoding="async"/>
+        <img src="assets/other-concept-bg-removed.png" alt="South Dakota flag concept option" loading="lazy" decoding="async"/>
+        <img src="assets/1780708861730 Background Removed.png" alt="South Dakota flag concept option" loading="lazy" decoding="async"/>
+      </div>
+    </div>
+
+    <div class="explain-panel fade-in">
+      <h3>Rich 3.0 design explained</h3>
+      <p>This design serves as a visually striking, deeply meaningful representation of South Dakota's rich heritage, diverse geography, and cultural identity. By combining clean vexillological geometry with symbolic regional elements, the artwork tells a complete story of the state from West River to East River.</p>
+      <p>Here is a breakdown of the artistic elements and symbolism woven into Rich's 3.0 recommendation.</p>
+
+      <h4>1. The Mighty Buffalo &amp; Indigenous Heritage (Left / West River)</h4>
+      <p><strong>The Buffalo:</strong> Standing strong on the left, the American bison represents the vast prairies, the history of the West River region, and the resilient spirit of South Dakota.</p>
+      <p><strong>Native American Artistry:</strong> The shading and line work inside the buffalo are intricately detailed with traditional geometric patterns, spiral motifs, and an eagle/thunderbird silhouette. This pays deep, beautiful homage to the state's nine federally recognized tribes and the profound spiritual and historical connection between the indigenous peoples and the bison.</p>
+      <p><strong>The Black Hills Spruce:</strong> Towering behind the buffalo is a majestic evergreen, specifically styled after the Black Hills Spruce, the official state tree. It anchors the left side of the flag in the rugged, forested geography of western South Dakota.</p>
+
+      <h4>2. The Ring-Necked Pheasant &amp; Agriculture (Right / East River)</h4>
+      <p><strong>The Pheasant:</strong> On the right stands the ring-necked pheasant, the state bird, celebrated both as a proud symbol of South Dakota's world-class wildlife heritage and its vibrant outdoor traditions.</p>
+      <p><strong>Soybean Shading:</strong> The delicate patterns inside the pheasant's feathers incorporate leafy, organic soybean forms, celebrating one of the state's most vital agricultural staples.</p>
+      <p><strong>The Corn Stalk:</strong> Standing directly beside the pheasant is a crisp, detailed corn stalk complete with developed ears. This symbolizes the heart of South Dakota's agricultural engine, abundance, and the rich soil of the East River plains.</p>
+      <p><strong>The Eastern Deciduous Tree:</strong> Behind the agricultural scene stands a full, leafy deciduous tree, reminiscent of the cottonwoods and bur oaks common to eastern river valleys, balancing the evergreen on the left.</p>
+
+      <h4>3. The Central Unified Elements</h4>
+      <p><strong>The Winding River:</strong> Sweeping through the center is a winding blue river. Geographically, it represents the Missouri River, which physically cuts through the heart of South Dakota. Artistically, it serves as the ultimate unifier, connecting the distinct landscapes and stories of the East and West.</p>
+      <p><strong>The South Dakota Sun:</strong> High in the sky sits a classic geometric sun with sharp, radiating rays. This nods to South Dakota's longtime identity as the Sunshine State, beaming warmth, growth, and optimism over the entire unified landscape.</p>
+      <p><strong>The Color Palette:</strong> The backdrop uses authentic South Dakota blue, honoring the state's flag lineage. By restricting the rest of the artwork to golden yellow and lighter river-blue accents, the flag maintains a professional, modern, cohesive look that reads beautifully from a distance.</p>
+      <p>It is an intentional, narrative-driven redesign that balances simplicity with deep cultural and geographic substance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OPINION POLL -->
+<section id="vote">
+  <div class="container">
+    <div class="vote-intro fade-in">
+      <p class="eyebrow">Opinion Poll</p>
+      <h2>Which Direction Should<br/><em>South Dakota's Flag Take?</em></h2>
+      <p class="lead">This informal poll is meant to collect feedback before the proposal is shared more broadly. Vote for Rich's 3.0 design, one of the two other primary concepts, the current flag, or another direction from the broader concept set.</p>
+      <div class="vote-notice">
+        &#128274;&nbsp; Online collection ready &nbsp;&#183;&nbsp; Optional comments help shape the final recommendation
+      </div>
+    </div>
+
+    <div class="vote-cards fade-in" id="voteCards">
+      <!-- Card 1: Rich's Final Design -->
+      <div class="vote-card" id="card-0" onclick="selectCard(0)">
+        <div class="card-img-wrap">
+          <img src="assets/rich-final-design.png" alt="Rich's 3.0 South Dakota flag design" loading="lazy" decoding="async"/>
+          <div class="card-badge">Option A</div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Rich's 3.0 Design</div>
+          <div class="card-desc">The final recommendation: buffalo, Black Hills Spruce, pheasant, agriculture, Missouri River, and South Dakota sun in one unified flag.</div>
+          <div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" id="bar-0" style="width:0%"></div></div></div>
+          <div class="card-meta" style="margin-top:0.8rem;">
+            <div class="vote-count">Votes: <span id="count-0">0</span></div>
+            <button class="vote-btn" id="btn-0" onclick="castVote(event,0)">Vote A</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: CGP Grey-Inspired Design -->
+      <div class="vote-card" id="card-1" onclick="selectCard(1)">
+        <div class="card-img-wrap">
+          <img src="assets/cgp-grey-inspired-design-bg-removed.png" alt="CGP Grey-inspired South Dakota flag concept" loading="lazy" decoding="async"/>
+          <div class="card-badge">Option B</div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">CGP Grey-Inspired Concept</div>
+          <div class="card-desc">A simplified flag-study concept based on modern flag-design principles: clear symbols, readable distance identity, and fewer competing details.</div>
+          <a class="credit-link" href="https://www.youtube.com/watch?t=189&si=HkSbiBZAYKMV9nf7&v=l4w6808wJcU&feature=youtu.be" target="_blank" rel="noopener noreferrer">Inspiration: CGP Grey YouTube video</a>
+          <div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" id="bar-1" style="width:0%"></div></div></div>
+          <div class="card-meta" style="margin-top:0.8rem;">
+            <div class="vote-count">Votes: <span id="count-1">0</span></div>
+            <button class="vote-btn" id="btn-1" onclick="castVote(event,1)">Vote B</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Solar Horizon -->
+      <div class="vote-card" id="card-2" onclick="selectCard(2)">
+        <div class="card-img-wrap">
+          <img src="assets/solar-horizon-design.png" alt="Solar Horizon South Dakota flag concept" loading="lazy" decoding="async"/>
+          <div class="card-badge">Option C</div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Solar Horizon</div>
+          <div class="card-desc">The early clean concept: a gold sun over South Dakota blue with a Missouri River form. Simple, optimistic, and strong from a distance.</div>
+          <div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" id="bar-2" style="width:0%"></div></div></div>
+          <div class="card-meta" style="margin-top:0.8rem;">
+            <div class="vote-count">Votes: <span id="count-2">0</span></div>
+            <button class="vote-btn" id="btn-2" onclick="castVote(event,2)">Vote C</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Other Concept Direction -->
+      <div class="vote-card" id="card-3" onclick="selectCard(3)">
+        <div class="card-img-wrap">
+          <img src="assets/other-concept-bg-removed.png" alt="Alternate South Dakota flag concept" loading="lazy" decoding="async"/>
+          <div class="card-badge">Option D</div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Another Concept Direction</div>
+          <div class="card-desc">You like the broader design exploration, but prefer one of the other visual approaches instead of the three primary designs.</div>
+          <div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" id="bar-3" style="width:0%"></div></div></div>
+          <div class="card-meta" style="margin-top:0.8rem;">
+            <div class="vote-count">Votes: <span id="count-3">0</span></div>
+            <button class="vote-btn" id="btn-3" onclick="castVote(event,3)">Vote D</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Current Flag -->
+      <div class="vote-card" id="card-4" onclick="selectCard(4)">
+        <div class="card-img-wrap">
+          <img src="assets/Flag_of_South_Dakota.svg.png" alt="Current South Dakota state flag" loading="lazy" decoding="async"/>
+          <div class="card-badge">Option E</div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Keep the Current Flag</div>
+          <div class="card-desc">Retain the 1992 flag with the Great Seal and "The Mount Rushmore State" inscription. Preserve the status quo.</div>
+          <div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" id="bar-4" style="width:0%"></div></div></div>
+          <div class="card-meta" style="margin-top:0.8rem;">
+            <div class="vote-count">Votes: <span id="count-4">0</span></div>
+            <button class="vote-btn" id="btn-4" onclick="castVote(event,4)">Vote E</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: Original Flag -->
+      <div class="vote-card" id="card-5" onclick="selectCard(5)">
+        <div class="card-img-wrap">
+          <img src="assets/1909-original-flag.png" alt="South Dakota's original state flag" loading="lazy" decoding="async"/>
+          <div class="card-badge">Option F</div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Return Toward the Original</div>
+          <div class="card-desc">Use the 1909 flag's original sun-forward spirit as the guide. South Dakota once had a simpler symbolic direction worth reconsidering.</div>
+          <div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" id="bar-5" style="width:0%"></div></div></div>
+          <div class="card-meta" style="margin-top:0.8rem;">
+            <div class="vote-count">Votes: <span id="count-5">0</span></div>
+            <button class="vote-btn" id="btn-5" onclick="castVote(event,5)">Vote F</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7: Open Call -->
+      <div class="vote-card" id="card-6" onclick="selectCard(6)">
+        <div class="card-img-wrap">
+          <svg viewBox="0 0 400 267" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="267" fill="#0d1b28"/>
+            <rect x="1" y="1" width="398" height="265" fill="none" stroke="rgba(240,165,0,0.3)" stroke-width="2" stroke-dasharray="8,4"/>
+            <text x="200" y="115" text-anchor="middle" font-family="Georgia" font-size="52" fill="rgba(240,165,0,0.25)">?</text>
+            <text x="200" y="155" text-anchor="middle" font-family="Arial" font-size="13" fill="rgba(253,248,240,0.4)" letter-spacing="3">YOUR DESIGN HERE</text>
+            <text x="200" y="178" text-anchor="middle" font-family="Arial" font-size="9" fill="rgba(253,248,240,0.25)" letter-spacing="1.5">SUBMIT BELOW TO BE CONSIDERED</text>
+          </svg>
+          <div class="card-badge">Option G</div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Open Call - New Design</div>
+          <div class="card-desc">Neither option feels right. South Dakota deserves something entirely fresh. Open the design challenge and let citizens submit proposals.</div>
+          <div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" id="bar-6" style="width:0%"></div></div></div>
+          <div class="card-meta" style="margin-top:0.8rem;">
+            <div class="vote-count">Votes: <span id="count-6">0</span></div>
+            <button class="vote-btn" id="btn-6" onclick="castVote(event,6)">Vote G</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="poll-feedback fade-in">
+      <h3>Add a note with your vote</h3>
+      <p>Enter your email to confirm your vote and unlock the poll results. If you choose another direction, tell us what you would rather see as well.</p>
+      <form id="pollDetailsForm">
+        <div class="poll-grid">
+          <div class="poll-field">
+            <label for="pollName">Name, optional</label>
+            <input id="pollName" name="name" autocomplete="name" placeholder="Your name"/>
+          </div>
+          <div class="poll-field">
+            <label for="pollEmail">Email to confirm your vote</label>
+            <input id="pollEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required/>
+          </div>
+          <div class="poll-field">
+            <label for="pollCity">City or county</label>
+            <input id="pollCity" name="city" autocomplete="address-level2" placeholder="Sioux Falls, Pennington County, etc."/>
+          </div>
+          <div class="poll-field">
+            <label for="pollAffiliation">Connection to SD</label>
+            <input id="pollAffiliation" name="connection" placeholder="Resident, former resident, visitor, business owner"/>
+          </div>
+          <div class="poll-field full">
+            <label for="pollComment">Other option or feedback</label>
+            <textarea id="pollComment" name="comment" placeholder="What should the committee consider before choosing a final flag proposal?"></textarea>
+          </div>
+        </div>
+      </form>
+      <div class="poll-note"><strong>Required:</strong> your email confirms the vote and helps unlock the live poll readout. The note below can still be used to share context.</div>
+      <div class="poll-status" id="pollStatus">Choose an option above. Your email confirms the vote and unlocks the results.</div>
+    </div>
+
+    <!-- TALLY -->
+    <div class="tally-panel fade-in locked" id="tallyPanel">
+      <h3>Opinion Poll Snapshot</h3>
+      <div class="tally-lock" id="tallyLock"><span>Enter your email and cast a vote to reveal the live poll results.</span></div>
+      <div class="tally-row">
+        <div class="tally-name">A &mdash; Rich 3.0</div>
+        <div class="tally-bar-bg"><div class="tally-bar-fill" id="tbar-0" style="width:0%"></div></div>
+        <div class="tally-num" id="tnum-0">0</div>
+      </div>
+      <div class="tally-row">
+        <div class="tally-name">B &mdash; CGP Grey</div>
+        <div class="tally-bar-bg"><div class="tally-bar-fill" id="tbar-1" style="width:0%"></div></div>
+        <div class="tally-num" id="tnum-1">0</div>
+      </div>
+      <div class="tally-row">
+        <div class="tally-name">C &mdash; Solar Horizon</div>
+        <div class="tally-bar-bg"><div class="tally-bar-fill" id="tbar-2" style="width:0%"></div></div>
+        <div class="tally-num" id="tnum-2">0</div>
+      </div>
+      <div class="tally-row">
+        <div class="tally-name">D &mdash; Other Concept</div>
+        <div class="tally-bar-bg"><div class="tally-bar-fill" id="tbar-3" style="width:0%"></div></div>
+        <div class="tally-num" id="tnum-3">0</div>
+      </div>
+      <div class="tally-row">
+        <div class="tally-name">E &mdash; Keep Current</div>
+        <div class="tally-bar-bg"><div class="tally-bar-fill" id="tbar-4" style="width:0%"></div></div>
+        <div class="tally-num" id="tnum-4">0</div>
+      </div>
+      <div class="tally-row">
+        <div class="tally-name">F &mdash; Original Flag</div>
+        <div class="tally-bar-bg"><div class="tally-bar-fill" id="tbar-5" style="width:0%"></div></div>
+        <div class="tally-num" id="tnum-5">0</div>
+      </div>
+      <div class="tally-row">
+        <div class="tally-name">G &mdash; Open Call</div>
+        <div class="tally-bar-bg"><div class="tally-bar-fill" id="tbar-6" style="width:0%"></div></div>
+        <div class="tally-num" id="tnum-6">0</div>
+      </div>
+      <div class="total-votes">Total votes cast: <strong id="totalVotes">0</strong></div>
+    </div>
+
+    <div class="voted-msg" id="votedMsg">
+      <p>&#10003;&nbsp; Thank you. Your feedback helps shape what gets recommended for South Dakota.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ECONOMIC CASE -->
+<section id="economic">
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="fade-in">
+      <p class="eyebrow">The Business Argument</p>
+      <h2>A Simple Flag Is a<br/><em>Free Economic Asset</em></h2>
+      <p class="lead">The Great Seal stays — on legal documents and government filings where it belongs. A redesigned flag gives South Dakota a bold commercial identity that works for farmers, tourism operators, and manufacturers who want to put South Dakota on a label.</p>
+    </div>
+    <div class="econ-grid fade-in">
+      <div class="econ-card"><div class="econ-icon">&#127806;</div><h4>"Made in South Dakota"</h4><p>A clean flag becomes a brand mark for local agriculture and products — the way Texas and Maryland businesses leverage their flags as instant regional identity.</p></div>
+      <div class="econ-card"><div class="econ-icon">&#127956;</div><h4>Tourism Identity</h4><p>Tourism is our top economic driver. A recognizable symbol on merchandise and social media multiplies every marketing dollar spent attracting visitors.</p></div>
+      <div class="econ-card"><div class="econ-icon">&#128717;</div><h4>Retail &amp; Merchandise</h4><p>A bold design prints cleanly on apparel, stickers, and products at any price point — a market the current complex seal simply cannot serve at scale.</p></div>
+      <div class="econ-card"><div class="econ-icon">&#128188;</div><h4>Workforce Recruitment</h4><p>A distinct identity helps South Dakota stand out to remote workers and professionals making location decisions — pride of place starts with a symbol.</p></div>
+      <div class="econ-card"><div class="econ-icon">&#128178;</div><h4>Zero Upfront Cost</h4><p>No agency replaces patches or letterheads immediately. The new design phases in naturally as existing assets reach end-of-life — zero fiscal burden.</p></div>
+      <div class="econ-card"><div class="econ-icon">&#127963;</div><h4>The Seal Is Preserved</h4><p>South Dakota's Great Seal remains on official documents and government correspondence — honored, intact, and in its proper context.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBMIT DESIGN -->
+<section id="submit">
+  <div class="container">
+    <p class="eyebrow">Open Design Challenge</p>
+    <h2>Submit Your Vision<br/>for South Dakota</h2>
+    <p class="lead">Designers, artists, students, tribal members, and all South Dakotans — your concept could be presented to the volunteer committee and ultimately to state legislators. This is your flag too.</p>
+    <div class="submit-card">
+      <h4>&#128203; What to Include</h4>
+      <ul class="checklist">
+        <li><span class="check-icon">&#10003;</span><span><strong style="color:var(--white);">Your artwork file</strong> — JPG, PNG, PDF, or SVG. Higher resolution is better for print review.</span></li>
+        <li><span class="check-icon">&#10003;</span><span><strong style="color:var(--white);">Design rationale</strong> — Colors, symbols, and what South Dakota heritage elements you honored.</span></li>
+        <li><span class="check-icon">&#10003;</span><span><strong style="color:var(--white);">Your name &amp; contact info</strong> — So we can credit you and follow up if selected by the committee.</span></li>
+      </ul>
+      <a class="submit-btn" id="submitBtn" href="#">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        Submit Your Flag Design by Email
+      </a>
+      <p class="submit-note">&#9888;&#65039; After clicking, <strong>attach your artwork file</strong> before sending. Submissions without artwork cannot be reviewed by the committee.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONAL NOTE -->
+<section id="personal">
+  <div class="container">
+    <div class="personal-note fade-in">
+      <p class="eyebrow">A Personal Note</p>
+      <h2>Rich's 3.0 design is the final recommendation.</h2>
+      <p><strong>The real purpose of this initiative is public discussion:</strong> what is a flag, and what is a seal? A seal can be detailed, official, and ceremonial. A flag has a different job. It should be easily identifiable from a distance, use color to tell a story, and be simple enough that people can remember it, draw it, wear it, and rally around it.</p>
+      <p>The simpler, the better. Rich's 3.0 design is presented here as the site's final recommendation, while still inviting public debate about how South Dakota can tell its story through a single image on a flag.</p>
+      <p>The goal is to think forward: how can South Dakota be represented in a visible, motivating, and promotable way that works on a flagpole, a storefront, a jersey, a patch, a product label, or a tourism campaign?</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>The Dakota Flag Initiative &middot; A Civic &amp; Economic Campaign for South Dakota &middot; Subject to SD Legislative Committee Approval &middot; Not affiliated with any political party</p>
+</footer>
+
+<script src="assets/sd_flag_data.js"></script>
+<script>
+// ── VOTE DATA ─────────────────────────────────────────────────────────
+const SHARED_DATA = window.SD_FLAG_DATA || {};
+const VOTE_KEY = SHARED_DATA.voteKey || 'sd_flag_vote_v3';
+const COUNTS_KEY = SHARED_DATA.countsKey || 'sd_flag_counts_v3';
+const EMAIL_KEY = SHARED_DATA.voteEmailKey || 'sd_flag_vote_email_v1';
+const POLL_ENDPOINT = SHARED_DATA.pollEndpoint || '';
+const OPTIONS = SHARED_DATA.options || [];
+const OPTION_LETTERS = OPTIONS.map((_, idx) => String.fromCharCode(65 + idx));
+const PREVIEW_OPTIONS = SHARED_DATA.previewOptions || {};
+
+function placeStorySections() {
+  const history = document.getElementById('history');
+  const sample = document.getElementById('sample');
+  if (history && sample && history.nextElementSibling !== sample) {
+    history.insertAdjacentElement('afterend', sample);
+  }
+}
+
+function selectPreviewDesign(key) {
+  const option = PREVIEW_OPTIONS[key] || PREVIEW_OPTIONS.rich;
+  document.getElementById('comparisonDesignLabel').innerHTML = '&#10003; ' + option.label + ' &#8212; Subject to Public Vote';
+  document.getElementById('proposedFlagImg').src = option.src;
+  document.getElementById('proposedFlagImg').alt = option.alt;
+  document.getElementById('comparisonDesignCaption').innerHTML = option.caption;
+  document.getElementById('distanceSummary').textContent = option.summary;
+
+  ['demoNew0','demoNew1','demoNew2','demoNew3'].forEach((id, idx) => {
+    const img = document.getElementById(id);
+    img.src = option.src;
+    img.alt = option.alt + ' distance preview ' + (idx + 1);
+  });
+
+  document.querySelectorAll('[data-preview-option]').forEach(el => {
+    el.classList.toggle('active', el.dataset.previewOption === key);
+  });
+}
+
+function wirePreviewSelectors() {
+  document.querySelectorAll('[data-preview-option]').forEach(el => {
+    el.addEventListener('click', () => selectPreviewDesign(el.dataset.previewOption));
+    el.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        selectPreviewDesign(el.dataset.previewOption);
+      }
+    });
+  });
+}
+
+// Browser storage is used only for private preview counts and duplicate-vote friction.
+function loadCounts() {
+  try {
+    const saved = localStorage.getItem(COUNTS_KEY);
+    const parsed = saved ? JSON.parse(saved) : [];
+    return OPTIONS.map((_, idx) => Number(parsed[idx]) || 0);
+  } catch(e) { return OPTIONS.map(() => 0); }
+}
+
+function saveCounts(counts) {
+  try { localStorage.setItem(COUNTS_KEY, JSON.stringify(counts)); } catch(e) {}
+}
+
+function loadEmail() {
+  try { return (localStorage.getItem(EMAIL_KEY) || '').trim(); } catch(e) { return ''; }
+}
+
+function saveEmail(email) {
+  try { localStorage.setItem(EMAIL_KEY, email); } catch(e) {}
+}
+
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email || '').trim());
+}
+
+function hasVoted() {
+  try { return !!localStorage.getItem(VOTE_KEY); } catch(e) { return false; }
+}
+
+function markVoted(idx) {
+  try { localStorage.setItem(VOTE_KEY, String(idx)); } catch(e) {}
+}
+
+function getPriorVote() {
+  try { const v = localStorage.getItem(VOTE_KEY); return v !== null ? parseInt(v) : -1; } catch(e) { return -1; }
+}
+
+function getPollDetails() {
+  const form = document.getElementById('pollDetailsForm');
+  const data = new FormData(form);
+  return {
+    name: (data.get('name') || '').trim(),
+    email: (data.get('email') || '').trim(),
+    city: (data.get('city') || '').trim(),
+    connection: (data.get('connection') || '').trim(),
+    comment: (data.get('comment') || '').trim()
+  };
+}
+
+function getConfirmedEmail() {
+  return document.getElementById('pollEmail').value.trim();
+}
+
+function confirmEmailIfNeeded() {
+  const email = getConfirmedEmail();
+  if (!isValidEmail(email)) {
+    setPollStatus('Please enter a valid email address before voting so we can confirm your vote and show the results.', 'warning');
+    document.getElementById('pollEmail').focus();
+    return false;
+  }
+  saveEmail(email);
+  return true;
+}
+
+function setPollStatus(message, type) {
+  const status = document.getElementById('pollStatus');
+  status.textContent = message;
+  status.className = 'poll-status' + (type ? ' ' + type : '');
+}
+
+async function submitVoteToDatabase(idx) {
+  const opt = OPTIONS[idx];
+  const details = getPollDetails();
+  const email = (details.email || getConfirmedEmail() || loadEmail()).trim();
+  if (!isValidEmail(email)) {
+    throw new Error('Email required to confirm vote');
+  }
+  const payload = {
+    poll: 'sd-flag-initiative-opinion-poll',
+    choiceIndex: idx,
+    choiceLabel: opt.label,
+    choiceName: opt.name,
+    choiceDescription: opt.imageDesc,
+    voterEmail: email,
+    feedback: details,
+    pageUrl: window.location.href,
+    userAgent: navigator.userAgent,
+    submittedAt: new Date().toISOString(),
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'unknown'
+  };
+
+  if (!POLL_ENDPOINT) {
+    setPollStatus('Preview mode: your vote is recorded in this browser. Add a hosted API URL to POLL_ENDPOINT to save real poll results online.', 'warning');
+    return { savedOnline: false, payload };
+  }
+
+  const response = await fetch(POLL_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+
+  if (!response.ok) {
+    throw new Error('Poll endpoint returned ' + response.status);
+  }
+
+  setPollStatus('Your vote, email confirmation, and optional feedback were saved to the online poll database.', 'success');
+  return { savedOnline: true, payload };
+}
+
+// Render current state
+function renderVotes() {
+  const counts = loadCounts();
+  const total = counts.reduce((a,b) => a+b, 0);
+  const alreadyVoted = hasVoted();
+  const priorIdx = getPriorVote();
+  const tallyPanel = document.getElementById('tallyPanel');
+  const emailReady = isValidEmail(getConfirmedEmail() || loadEmail());
+
+  for (let i = 0; i < OPTIONS.length; i++) {
+    const pct = total > 0 ? Math.round((counts[i] / total) * 100) : 0;
+    document.getElementById('count-' + i).textContent = counts[i];
+    document.getElementById('bar-' + i).style.width = pct + '%';
+    document.getElementById('tbar-' + i).style.width = pct + '%';
+    document.getElementById('tnum-' + i).textContent = counts[i];
+
+    const btn = document.getElementById('btn-' + i);
+    if (alreadyVoted) {
+      btn.disabled = true;
+      if (i === priorIdx) {
+        btn.innerHTML = '&#10003; Your Vote';
+        btn.classList.add('voted');
+        document.getElementById('card-' + i).classList.add('voted-for');
+      } else {
+        btn.textContent = 'Closed';
+      }
+    } else if (!emailReady) {
+      btn.disabled = true;
+      btn.textContent = 'Email required';
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Vote ' + OPTION_LETTERS[i];
+    }
+  }
+  document.getElementById('totalVotes').textContent = alreadyVoted ? total : '—';
+  if (tallyPanel) {
+    tallyPanel.classList.toggle('locked', !alreadyVoted);
+  }
+  if (alreadyVoted) {
+    document.getElementById('votedMsg').classList.add('show');
+  }
+}
+
+function selectCard(idx) {
+  if (hasVoted()) return;
+  document.querySelectorAll('.vote-card').forEach((c,i) => {
+    c.classList.toggle('selected', i === idx);
+  });
+}
+
+async function castVote(e, idx) {
+  e.stopPropagation();
+  if (hasVoted()) return;
+  if (!confirmEmailIfNeeded()) return;
+
+  const btn = document.getElementById('btn-' + idx);
+  btn.disabled = true;
+  btn.textContent = 'Saving...';
+
+  try {
+    await submitVoteToDatabase(idx);
+    saveEmail(getConfirmedEmail());
+    const counts = loadCounts();
+    counts[idx]++;
+    saveCounts(counts);
+    markVoted(idx);
+    renderVotes();
+  } catch(error) {
+    btn.disabled = false;
+    btn.textContent = 'Vote ' + OPTION_LETTERS[idx];
+    if (String(error && error.message || '').includes('Email required')) {
+      setPollStatus('Please enter a valid email address before voting.', 'warning');
+    } else {
+      setPollStatus('The online poll could not save your vote. Please try again in a moment.', 'warning');
+    }
+    console.error(error);
+  }
+}
+
+// Submit design email
+document.getElementById('submitBtn').addEventListener('click', function(e) {
+  e.preventDefault();
+  const subject = encodeURIComponent('South Dakota Flag Design Submission — Dakota Flag Initiative');
+  const body = encodeURIComponent(
+`Hello,
+
+I am submitting my flag design concept for the South Dakota Flag Initiative.
+
+── MY DESIGN ──────────────────────────────
+Primary motif / symbol:
+Color palette:
+Heritage elements honored:
+Design notes / artistic rationale:
+[Describe your design choices here]
+
+── MY CONTACT INFO ────────────────────────
+Name:
+City / Town in SD:
+Phone (optional):
+
+⚠️ REMINDER: Please attach your artwork file (JPG, PNG, PDF, or SVG) before sending.
+Submissions without artwork cannot be reviewed by the committee.
+
+Thank you for contributing to South Dakota's future identity.`
+  );
+  window.location.href = 'mailto:richward33@gmail.com?subject=' + subject + '&body=' + body;
+});
+
+placeStorySections();
+wirePreviewSelectors();
+selectPreviewDesign('rich');
+document.getElementById('pollEmail').value = loadEmail();
+document.getElementById('pollEmail').addEventListener('input', () => {
+  if (!hasVoted()) {
+    renderVotes();
+  }
+});
+
+// Fade-in observer
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Init
+renderVotes();
+</script>
+</body>
+</html>

@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>South Dakota Flag Initiative — Swipe Story</title>
+<link rel="icon" type="image/png" href="assets/1780708944141%20Background%20Removed.png"/>
+<link rel="apple-touch-icon" href="assets/1780708944141%20Background%20Removed.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Oswald:wght@400;600;700&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --sky:#1a6fa3;
+  --blue:#0b6f98;
+  --gold:#f0a500;
+  --gold-light:#f5c842;
+  --ink:#07131d;
+  --navy:#0d1b28;
+  --paper:#f7efe1;
+  --paper-soft:#eadfce;
+  --muted:rgba(247,239,225,0.68);
+  --line:rgba(247,239,225,0.16);
+  --green:#2ecc71;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html, body { height:100%; }
+body { font-family:'Source Serif 4', Georgia, serif; background:var(--ink); color:var(--paper); overflow:hidden; }
+button, input, textarea { font:inherit; }
+
+/* Container */
+.swipe-deck {
+  height:100vh;
+  overflow-y:auto;
+  overflow-x:hidden;
+  scroll-snap-type:y mandatory;
+  scroll-behavior:smooth;
+}
+
+/* Each section/slide */
+.slide {
+  scroll-snap-align:start;
+  height:100vh;
+  width:100%;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:5rem clamp(1.25rem,4vw,4rem);
+  overflow:hidden;
+}
+.slide::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse 55% 45% at 82% 15%, rgba(240,165,0,0.14), transparent 62%),
+    radial-gradient(ellipse 45% 60% at 8% 88%, rgba(26,111,163,0.2), transparent 65%);
+}
+.slide.light { background:var(--paper); color:#182333; }
+.slide.light::before { background:radial-gradient(ellipse 60% 50% at 85% 12%, rgba(240,165,0,0.18), transparent 65%); }
+.slide.blue { background:linear-gradient(150deg,#0c2032 0%,#173d59 100%); }
+.slide.gold-line::after { content:''; position:absolute; left:0; right:0; bottom:0; height:4px; background:linear-gradient(90deg,var(--sky),var(--gold),var(--sky)); }
+.slide-inner { width:min(1120px,100%); max-height:calc(100vh - 7rem); overflow-y:auto; position:relative; z-index:1; scrollbar-width:thin; scrollbar-color:rgba(240,165,0,0.55) transparent; }
+.chapter { font-family:'Oswald',sans-serif; font-size:0.66rem; letter-spacing:0.34em; text-transform:uppercase; color:var(--gold); margin-bottom:1.1rem; display:flex; align-items:center; gap:0.8rem; }
+.chapter::before { content:''; width:2.4rem; height:2px; background:currentColor; }
+.slide.light .chapter { color:#a46a00; }
+h1, h2, h3 { font-family:'Playfair Display',serif; font-weight:900; line-height:1.02; }
+h1 { font-size:clamp(3.4rem,10vw,8.5rem); letter-spacing:-0.055em; max-width:10ch; }
+h2 { font-size:clamp(2.6rem,6vw,5.8rem); letter-spacing:-0.045em; max-width:12ch; }
+h3 { font-size:clamp(1.65rem,3.2vw,3rem); letter-spacing:-0.025em; }
+.dek { font-size:clamp(1.05rem,1.8vw,1.45rem); line-height:1.65; color:var(--muted); max-width:58ch; margin-top:1.4rem; }
+.slide.light .dek, .slide.light p { color:rgba(24,35,51,0.72); }
+.accent { color:var(--gold-light); }
+.slide.light .accent { color:#b27400; }
+.topbar {
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:20;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0.85rem clamp(1rem,3vw,2.5rem);
+  background:linear-gradient(180deg,rgba(7,19,29,0.88),rgba(7,19,29,0));
+  pointer-events:none;
+}
+.brand { font-family:'Oswald',sans-serif; color:var(--gold); font-size:0.78rem; letter-spacing:0.22em; text-transform:uppercase; }
+.progress { font-family:'Oswald',sans-serif; color:rgba(247,239,225,0.55); font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; }
+.scroll-note { position:absolute; right:clamp(1rem,3vw,2.5rem); bottom:1.25rem; z-index:2; font-family:'Oswald',sans-serif; font-size:0.62rem; letter-spacing:0.24em; text-transform:uppercase; color:rgba(247,239,225,0.48); }
+.two-col { display:grid; grid-template-columns:minmax(0,0.95fr) minmax(280px,1.05fr); gap:clamp(2rem,5vw,5.5rem); align-items:center; }
+.media-card {
+  background:rgba(255,255,255,0.055);
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:clamp(0.85rem,2vw,1.25rem);
+  box-shadow:0 24px 80px rgba(0,0,0,0.28);
+}
+.slide.light .media-card { background:rgba(255,255,255,0.68); border-color:rgba(24,35,51,0.12); box-shadow:0 24px 80px rgba(24,35,51,0.14); }
+.media-card img { width:100%; aspect-ratio:16/9; object-fit:contain; display:block; }
+.media-card img[src*="bg-removed"],
+.media-card img[src*="Background Removed"] { object-fit:cover; }
+.caption { color:var(--muted); font-size:0.95rem; line-height:1.65; margin-top:1rem; }
+.slide.light .caption { color:rgba(24,35,51,0.72); }
+.caption strong { color:var(--paper); }
+.slide.light .caption strong { color:#182333; }
+.pullquote {
+  font-family:'Playfair Display',serif;
+  font-weight:900;
+  font-size:clamp(2rem,4.6vw,4.8rem);
+  letter-spacing:-0.045em;
+  line-height:1.05;
+  max-width:13ch;
+}
+.rule { width:4rem; height:3px; background:var(--gold); margin:1.8rem 0; }
+.small-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; margin-top:2rem; }
+.mini-card { border:1px solid var(--line); background:rgba(255,255,255,0.045); border-radius:8px; padding:1rem; }
+.slide.light .mini-card { background:rgba(255,255,255,0.62); border-color:rgba(24,35,51,0.12); }
+.mini-card img { width:100%; aspect-ratio:3/2; object-fit:contain; display:block; margin-bottom:0.75rem; }
+.mini-card img[src*="bg-removed"],
+.mini-card img[src*="Background Removed"] { object-fit:cover; }
+.mini-card h3 { font-size:1.25rem; color:var(--gold-light); margin-bottom:0.3rem; }
+.slide.light .mini-card h3 { color:#9d6900; }
+.mini-card p { font-size:0.95rem; line-height:1.6; color:var(--muted); }
+.journey-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; margin-top:2rem; }
+.journey-card {
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:1rem;
+  background:rgba(255,255,255,0.045);
+  cursor:pointer;
+  transition:transform 0.22s,border-color 0.22s,background 0.22s;
+}
+.journey-card:hover, .journey-card.active { transform:translateY(-4px); border-color:rgba(240,165,0,0.56); background:rgba(240,165,0,0.08); }
+.journey-card img { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; margin-bottom:0.85rem; }
+.journey-card span { font-family:'Oswald',sans-serif; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); }
+.journey-card h3 { font-size:1.25rem; margin:0.35rem 0; }
+.journey-card p { color:var(--muted); font-size:0.9rem; line-height:1.55; }
+.comparison { display:grid; grid-template-columns:1fr auto 1fr; gap:1.5rem; align-items:center; margin-top:2rem; }
+.flag-frame { background:rgba(0,0,0,0.18); border:1px solid var(--line); border-radius:8px; padding:0.9rem; }
+.flag-frame img { width:100%; aspect-ratio:3/2; object-fit:contain; display:block; }
+.flag-frame img[src*="bg-removed"],
+.flag-frame img[src*="Background Removed"] { object-fit:cover; }
+.vs { font-family:'Playfair Display',serif; font-size:2.2rem; color:rgba(240,165,0,0.6); font-weight:900; }
+.picker { display:flex; flex-wrap:wrap; gap:0.6rem; margin-top:1.25rem; }
+.picker button {
+  border:1px solid var(--line);
+  background:rgba(255,255,255,0.045);
+  color:var(--paper);
+  border-radius:999px;
+  padding:0.55rem 0.8rem;
+  font-family:'Oswald',sans-serif;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  font-size:0.6rem;
+  cursor:pointer;
+}
+.picker button.active, .picker button:hover { border-color:rgba(240,165,0,0.66); color:var(--gold-light); background:rgba(240,165,0,0.1); }
+.distance-strip { display:flex; flex-wrap:wrap; align-items:flex-end; gap:1rem; margin-top:1.5rem; }
+.distance-compare { display:grid; grid-template-columns:1fr; gap:1rem; margin-top:0.4rem; }
+.distance-row-label { font-family:'Oswald',sans-serif; font-size:0.58rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(247,239,225,0.5); margin-top:0.7rem; }
+.slide.light .distance-row-label { color:rgba(24,35,51,0.46); }
+.distance-compare .distance-strip { margin-top:0.45rem; gap:0.7rem; justify-content:center; }
+.distance-item { display:flex; flex-direction:column; align-items:center; gap:0.4rem; }
+.distance-flag { width:112px; height:75px; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.22); border-radius:4px; overflow:hidden; box-shadow:0 10px 24px rgba(0,0,0,0.28); }
+.distance-flag img { width:100%; height:100%; object-fit:contain; display:block; }
+.distance-flag img[src*="bg-removed"],
+.distance-flag img[src*="Background Removed"] { object-fit:cover; }
+.distance-item span { font-family:'Oswald',sans-serif; font-size:0.56rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(247,239,225,0.48); }
+.vote-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:1rem; margin-top:2rem; }
+.vote-card {
+  background:rgba(255,255,255,0.055);
+  border:1px solid var(--line);
+  border-radius:10px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;
+}
+.vote-card:hover, .vote-card.selected { transform:translateY(-3px); border-color:rgba(240,165,0,0.62); box-shadow:0 14px 36px rgba(0,0,0,0.25); }
+.vote-card.voted-for { border-color:var(--green); }
+.vote-card img { width:100%; aspect-ratio:16/9; object-fit:contain; display:block; padding:0.55rem; background:rgba(0,0,0,0.18); }
+.vote-card img[src*="bg-removed"],
+.vote-card img[src*="Background Removed"] { object-fit:cover; padding:0; }
+.vote-body { padding:1rem; }
+.vote-body h3 { font-size:1.12rem; margin-bottom:0.3rem; }
+.vote-body p { font-size:0.86rem; line-height:1.55; color:var(--muted); }
+.credit-link {
+  display:inline-block;
+  margin-top:-0.2rem;
+  margin-bottom:0.65rem;
+  font-family:'Oswald',sans-serif;
+  font-size:0.56rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:rgba(247,239,225,0.52);
+  text-decoration:none;
+}
+.credit-link:hover { color:var(--gold-light); }
+.vote-actions { display:flex; align-items:center; justify-content:space-between; margin-top:0.85rem; gap:0.7rem; }
+.vote-count { font-family:'Oswald',sans-serif; font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase; color:rgba(247,239,225,0.55); }
+.vote-percent { display:none; margin-top:0.7rem; }
+.results-visible .vote-percent { display:block; }
+.percent-line { display:flex; align-items:center; justify-content:space-between; gap:0.85rem; font-family:'Oswald',sans-serif; font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase; color:rgba(247,239,225,0.72); }
+.percent-track { height:6px; margin-top:0.4rem; border-radius:999px; overflow:hidden; background:rgba(255,255,255,0.1); }
+.percent-fill { height:100%; width:0%; border-radius:999px; background:var(--gold); transition:width 0.5s ease; }
+.vote-card.voted-for .percent-fill { background:var(--green); }
+.vote-btn {
+  border:0;
+  background:var(--gold);
+  color:var(--ink);
+  border-radius:999px;
+  padding:0.5rem 0.85rem;
+  font-family:'Oswald',sans-serif;
+  font-weight:700;
+  font-size:0.62rem;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+.vote-btn:disabled { opacity:0.42; cursor:not-allowed; }
+.feedback { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0.75rem; margin-top:1.5rem; }
+.feedback label { display:flex; flex-direction:column; gap:0.32rem; font-family:'Oswald',sans-serif; font-size:0.58rem; letter-spacing:0.16em; text-transform:uppercase; color:rgba(247,239,225,0.54); }
+.feedback label.full { grid-column:1/-1; }
+.feedback input, .feedback textarea { width:100%; border:1px solid var(--line); background:rgba(255,255,255,0.055); color:var(--paper); border-radius:6px; padding:0.72rem; font-family:'Source Serif 4',Georgia,serif; font-size:0.95rem; letter-spacing:0; text-transform:none; }
+.feedback textarea { min-height:86px; resize:vertical; }
+.status { color:var(--muted); font-size:0.9rem; line-height:1.55; margin-top:1rem; }
+.status.success { color:var(--green); }
+.status.warning { color:var(--gold-light); }
+.open-original { color:inherit; text-decoration:none; border-bottom:1px solid currentColor; }
+.alt-link {
+  display:inline-block;
+  margin-top:1.4rem;
+  font-family:'Oswald',sans-serif;
+  color:var(--gold-light);
+  text-decoration:none;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  font-size:0.65rem;
+}
+@media (max-width:860px) {
+  body { overflow:auto; }
+  .swipe-deck { scroll-snap-type:y proximity; }
+  .slide { height:100svh; padding:4.25rem 1.1rem 3rem; }
+  .slide-inner { max-height:calc(100svh - 7rem); }
+  .two-col, .comparison, .journey-grid, .small-grid, .feedback { grid-template-columns:1fr; }
+  .distance-flag { width:clamp(70px,20vw,104px); height:clamp(47px,13.4vw,69px); }
+  h1 { font-size:clamp(3rem,17vw,5rem); }
+  h2 { font-size:clamp(2.3rem,13vw,4rem); }
+  .vs { text-align:center; }
+  .topbar { background:rgba(7,19,29,0.82); }
+  .scroll-note { display:none; }
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand">SD Flag Initiative</div>
+  <div class="progress" id="progressText">Slide 1</div>
+</div>
+
+<main class="swipe-deck" id="deck">
+  <section class="slide gold-line" data-title="Opening">
+    <div class="slide-inner two-col">
+      <div>
+        <p class="chapter">Public Design Story</p>
+        <h1>A flag should work from the road.</h1>
+        <p class="dek">South Dakota deserves a flag that can be recognized in an instant: on a pole, a jersey, a storefront, a patch, or a tourism campaign.</p>
+      </div>
+      <div class="media-card">
+        <img src="assets/rich-final-design.png" alt="Rich's 3.0 South Dakota flag design" loading="eager" fetchpriority="high" decoding="async"/>
+        <p class="caption">This swipe edition walks through the case one idea at a time, then invites a public vote.</p>
+      </div>
+    </div>
+    <div class="scroll-note">Swipe or scroll</div>
+  </section>
+
+  <section class="slide light" data-title="Problem">
+    <div class="slide-inner two-col">
+      <div>
+        <p class="chapter">The Problem</p>
+        <p class="pullquote">A seal is for documents. A flag is for distance.</p>
+        <div class="rule"></div>
+        <p class="dek">South Dakota's current flag asks people to read a seal. That is a lot to ask at 50 feet, and nearly impossible at 200 feet.</p>
+      </div>
+      <div class="media-card">
+          <img id="currentFlagHero" src="assets/Flag_of_South_Dakota.svg.png" alt="Current South Dakota state flag" loading="eager" fetchpriority="high" decoding="async"/>
+        <p class="caption"><strong>Current flag:</strong> meaningful up close, but visually crowded from far away.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide blue" data-title="Past Flags">
+    <div class="slide-inner">
+      <p class="chapter">Past Flags</p>
+      <h2>South Dakota has changed its flag before.</h2>
+      <p class="dek">The point is not change for novelty. The point is improvement: clearer identity, stronger recognition, and a design people can carry proudly.</p>
+      <div class="small-grid">
+        <article class="mini-card">
+          <img id="originalFlagImg" src="" alt="" loading="lazy" decoding="async"/>
+          <h3>1909 Original</h3>
+          <p>A sun-forward design direction that reminds us simple symbols often read faster than seals.</p>
+        </article>
+        <article class="mini-card">
+          <img src="assets/Flag_of_South_Dakota.svg.png" alt="Current South Dakota state flag" loading="lazy" decoding="async"/>
+          <h3>1992 Current Flag</h3>
+          <p>The modern flag still depends on the Great Seal and circular lettering, which are difficult to identify from distance.</p>
+        </article>
+      </div>
+      <a class="alt-link" id="historyLink" href="#" target="_blank" rel="noopener noreferrer">Read the brief flag history</a>
+    </div>
+  </section>
+
+  <section class="slide light" data-title="Principles">
+    <div class="slide-inner two-col">
+      <div>
+        <p class="chapter">The Principle</p>
+        <h2>The more simple, the better.</h2>
+        <p class="dek">A strong flag uses shape and color before anyone has time to read it. The distance test keeps each image the same size. Only the blur changes.</p>
+        <p class="dek">That is the question: after detail turns to haze, what is still recognizable?</p>
+      </div>
+      <div class="media-card">
+        <div class="distance-compare">
+          <p class="distance-row-label">Current flag</p>
+          <div class="distance-strip" id="principleCurrentDistance"></div>
+          <p class="distance-row-label" id="principlePreviewLabel">Rich's 3.0 design</p>
+          <div class="distance-strip" id="principlePreviewDistance"></div>
+        </div>
+        <p class="caption" id="principleDistanceSummary">At 200 feet, the current flag becomes an anonymous blue field. Rich's 3.0 design keeps its main read: blue field, gold state symbols, and a central river shape.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide blue" data-title="Design Journey">
+    <div class="slide-inner">
+      <p class="chapter">Design Progression</p>
+      <h2>From flag principles to a South Dakota story.</h2>
+      <p class="dek">The proposal moves from a flag-study idea, to a simpler sun-and-river direction, and finally to a fuller wildlife concept intended to spark public discussion.</p>
+      <div class="journey-grid" id="journeyGrid"></div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Old vs New">
+    <div class="slide-inner">
+      <p class="chapter">Old vs. New</p>
+      <h2>Choose a concept. Test it against the current flag.</h2>
+      <div class="picker" id="conceptPicker"></div>
+      <div class="comparison">
+        <div class="flag-frame">
+          <img src="assets/Flag_of_South_Dakota.svg.png" alt="Current South Dakota state flag" loading="lazy" decoding="async"/>
+          <p class="caption"><strong>Current flag:</strong> official, detailed, difficult at distance.</p>
+        </div>
+        <div class="vs">vs.</div>
+        <div class="flag-frame">
+          <img id="previewFlag" src="assets/rich-final-design.png" alt="Rich's 3.0 South Dakota flag design" loading="lazy" decoding="async"/>
+          <p class="caption" id="previewCaption"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide light" data-title="Final Design">
+    <div class="slide-inner two-col">
+      <div>
+        <p class="chapter">Rich's Submission</p>
+        <h2>A narrative and the final recommendation.</h2>
+        <p class="dek">Buffalo and Black Hills Spruce speak to West River. Pheasant, corn, soybean forms, and a deciduous tree speak to East River. The Missouri River connects both halves beneath the South Dakota sun.</p>
+      </div>
+      <div class="media-card">
+        <img src="assets/rich-final-design.png" alt="Rich's 3.0 South Dakota flag design" loading="lazy" decoding="async"/>
+        <p class="caption"><strong>Rich's view:</strong> this design is the final recommendation on the site, offered to encourage public debate and refinement.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Opinion Poll">
+    <div class="slide-inner">
+      <p class="chapter">Opinion Poll</p>
+      <h2>Which direction should South Dakota take?</h2>
+      <p class="dek">Vote for a concept, keep the current flag, return toward the original, or ask for an open design call. Optional notes help sharpen the public recommendation.</p>
+      <p class="status">Enter your email first to confirm your vote and unlock the poll results.</p>
+      <div class="vote-grid" id="voteGrid"></div>
+      <form class="feedback" id="pollDetailsForm">
+        <label>Name optional
+          <input name="name" autocomplete="name"/>
+        </label>
+        <label>Email to confirm your vote
+          <input name="email" id="pollEmail" type="email" autocomplete="email" required placeholder="you@example.com"/>
+        </label>
+        <label>City or county optional
+          <input name="city" autocomplete="address-level2"/>
+        </label>
+        <label>Connection to SD optional
+          <input name="connection"/>
+        </label>
+        <label class="full">Comment optional
+          <textarea name="comment" placeholder="Tell us what you prefer, what feels too busy, or what South Dakota story the flag should carry."></textarea>
+        </label>
+      </form>
+      <p class="status" id="pollStatus">Enter your email to confirm the vote and unlock the results.</p>
+    </div>
+  </section>
+
+  <section class="slide gold-line light" data-title="Personal Note">
+    <div class="slide-inner two-col">
+      <div>
+        <p class="chapter">Personal Note</p>
+        <h2>Rich's 3.0 design is the final recommendation.</h2>
+        <p class="dek">The goal is public discussion around what is a flag versus what is a seal. A flag should be identifiable from a distance and use color to tell a story. Rich's 3.0 design is the recommendation on this site, while still inviting public debate and refinement.</p>
+      </div>
+      <div class="media-card">
+        <img src="assets/1780708944141 Background Removed.png" alt="Simple South Dakota sun flag concept" loading="lazy" decoding="async"/>
+        <p class="caption">The important part is asking the question in public while giving people a concrete recommendation to react to.</p>
+        <a class="alt-link open-original" href="index.html">Open the full-page version</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="assets/sd_flag_data.js"></script>
+<script>
+const DATA = window.SD_FLAG_DATA || {};
+const OPTIONS = DATA.options || [];
+const PREVIEW_OPTIONS = DATA.previewOptions || {};
+const VOTE_KEY = DATA.voteKey || 'sd_flag_vote_v3';
+const COUNTS_KEY = DATA.countsKey || 'sd_flag_counts_v3';
+const EMAIL_KEY = DATA.voteEmailKey || 'sd_flag_vote_email_v1';
+const POLL_ENDPOINT = DATA.pollEndpoint || '';
+const OPTION_LETTERS = OPTIONS.map((_, idx) => String.fromCharCode(65 + idx));
+let selectedVote = null;
+let activePreview = 'rich';
+
+function byId(id) { return document.getElementById(id); }
+
+function loadCounts() {
+  try {
+    const saved = localStorage.getItem(COUNTS_KEY);
+    const parsed = saved ? JSON.parse(saved) : [];
+    return OPTIONS.map((_, idx) => Number(parsed[idx]) || 0);
+  } catch(e) {
+    return OPTIONS.map(() => 0);
+  }
+}
+
+function saveCounts(counts) {
+  try { localStorage.setItem(COUNTS_KEY, JSON.stringify(counts)); } catch(e) {}
+}
+
+function loadEmail() {
+  try { return (localStorage.getItem(EMAIL_KEY) || '').trim(); } catch(e) { return ''; }
+}
+
+function saveEmail(email) {
+  try { localStorage.setItem(EMAIL_KEY, email); } catch(e) {}
+}
+
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email || '').trim());
+}
+
+function priorVote() {
+  try {
+    const vote = localStorage.getItem(VOTE_KEY);
+    return vote === null ? -1 : parseInt(vote, 10);
+  } catch(e) {
+    return -1;
+  }
+}
+
+function markVoted(idx) {
+  try { localStorage.setItem(VOTE_KEY, String(idx)); } catch(e) {}
+}
+
+function getPollDetails() {
+  const form = byId('pollDetailsForm');
+  const data = new FormData(form);
+  return {
+    name:(data.get('name') || '').trim(),
+    email:(data.get('email') || '').trim(),
+    city:(data.get('city') || '').trim(),
+    connection:(data.get('connection') || '').trim(),
+    comment:(data.get('comment') || '').trim()
+  };
+}
+
+function getConfirmedEmail() {
+  return (byId('pollEmail').value || '').trim();
+}
+
+function confirmEmailIfNeeded() {
+  const email = getConfirmedEmail();
+  if (!isValidEmail(email)) {
+    setStatus('Please enter a valid email address before voting so we can confirm your vote and reveal the results.', 'warning');
+    byId('pollEmail').focus();
+    return false;
+  }
+  saveEmail(email);
+  return true;
+}
+
+function setStatus(message, type) {
+  const status = byId('pollStatus');
+  status.textContent = message;
+  status.className = 'status' + (type ? ' ' + type : '');
+}
+
+async function submitVote(idx) {
+  const opt = OPTIONS[idx];
+  const details = getPollDetails();
+  const email = (details.email || getConfirmedEmail() || loadEmail()).trim();
+  if (!isValidEmail(email)) {
+    throw new Error('Email required to confirm vote');
+  }
+  const payload = {
+    poll:'sd-flag-initiative-opinion-poll',
+    format:'swypr',
+    choiceIndex:idx,
+    choiceLabel:opt.label,
+    choiceName:opt.name,
+    choiceDescription:opt.imageDesc,
+    voterEmail: email,
+    feedback:details,
+    pageUrl:window.location.href,
+    userAgent:navigator.userAgent,
+    submittedAt:new Date().toISOString(),
+    timezone:Intl.DateTimeFormat().resolvedOptions().timeZone || 'unknown'
+  };
+
+  if (!POLL_ENDPOINT) {
+    setStatus('Preview mode: your vote is recorded in this browser. Add a hosted API URL to the shared data file to save real poll results online.', 'warning');
+    return payload;
+  }
+
+  const response = await fetch(POLL_ENDPOINT, {
+    method:'POST',
+    headers:{ 'Content-Type':'application/json' },
+    body:JSON.stringify(payload)
+  });
+
+  if (!response.ok) throw new Error('Poll endpoint returned ' + response.status);
+  setStatus('Your vote, email confirmation, and optional feedback were saved to the online poll database.', 'success');
+  return payload;
+}
+
+function renderVoteGrid() {
+  const grid = byId('voteGrid');
+  const counts = loadCounts();
+  const voted = priorVote();
+  const emailReady = isValidEmail(getConfirmedEmail() || loadEmail());
+  const total = counts.reduce((sum, count) => sum + count, 0);
+  const showResults = voted >= 0;
+  grid.innerHTML = OPTIONS.map((opt, idx) => `
+    <article class="vote-card ${voted === idx ? 'voted-for' : ''} ${showResults ? 'results-visible' : ''}" data-vote-index="${idx}">
+      <img src="${opt.imageLink}" alt="${opt.name}" loading="lazy" decoding="async"/>
+      <div class="vote-body">
+        <h3>${opt.label}</h3>
+        <p>${opt.imageDesc}</p>
+        ${idx === 1 ? `<a class="credit-link" href="https://www.youtube.com/watch?t=189&si=HkSbiBZAYKMV9nf7&v=l4w6808wJcU&feature=youtu.be" target="_blank" rel="noopener noreferrer">Inspiration: CGP Grey YouTube video</a>` : ''}
+        <div class="vote-percent" aria-label="${opt.label} vote percentage">
+          <div class="percent-line">
+            <span>Result</span>
+            <strong id="percent-${idx}">${total ? Math.round((counts[idx] / total) * 100) : 0}%</strong>
+          </div>
+          <div class="percent-track"><div class="percent-fill" style="width:${total ? Math.round((counts[idx] / total) * 100) : 0}%"></div></div>
+        </div>
+        <div class="vote-actions">
+          <span class="vote-count">${showResults ? 'Poll share' : 'Vote privately'}</span>
+          <button class="vote-btn" ${(voted >= 0 || !emailReady) ? 'disabled' : ''} data-vote-button="${idx}">${voted === idx ? 'Voted' : (!emailReady ? 'Email required' : 'Vote ' + OPTION_LETTERS[idx])}</button>
+        </div>
+      </div>
+    </article>
+  `).join('');
+
+  grid.querySelectorAll('[data-vote-index]').forEach(card => {
+    card.addEventListener('click', event => {
+      const idx = Number(card.dataset.voteIndex);
+      selectVote(idx);
+      if (event.target.matches('[data-vote-button]')) castVote(idx);
+    });
+  });
+}
+
+function selectVote(idx) {
+  selectedVote = idx;
+  document.querySelectorAll('.vote-card').forEach(card => {
+    card.classList.toggle('selected', Number(card.dataset.voteIndex) === idx);
+  });
+  if (priorVote() < 0) {
+    if (isValidEmail(getConfirmedEmail() || loadEmail())) {
+      setStatus('Selected ' + OPTIONS[idx].label + '. Add an optional note, then tap the vote button.', '');
+    } else {
+      setStatus('Selected ' + OPTIONS[idx].label + '. Enter your email to confirm the vote and unlock the results.', 'warning');
+    }
+  }
+}
+
+async function castVote(idx) {
+  if (priorVote() >= 0) {
+    setStatus('A vote has already been recorded in this browser. Thank you for weighing in.', 'success');
+    return;
+  }
+  if (!confirmEmailIfNeeded()) return;
+  const counts = loadCounts();
+  counts[idx] += 1;
+  saveCounts(counts);
+  markVoted(idx);
+  saveEmail(getConfirmedEmail());
+  renderVoteGrid();
+  selectVote(idx);
+  try {
+    await submitVote(idx);
+  } catch(e) {
+    if (String(e && e.message || '').includes('Email required')) {
+      setStatus('Please enter a valid email address before voting.', 'warning');
+    } else {
+      setStatus('The online poll could not save your vote. Please try again in a moment.', 'warning');
+    }
+  }
+}
+
+function renderJourney() {
+  const grid = byId('journeyGrid');
+  grid.innerHTML = (DATA.conceptJourney || []).map(item => `
+    <article class="journey-card ${item.key === activePreview ? 'active' : ''}" data-preview="${item.key}">
+      <img src="${item.src}" alt="${item.alt}" loading="lazy" decoding="async"/>
+      <span>${item.kicker}</span>
+      <h3>${item.title}</h3>
+      <p>${item.body}</p>
+      ${item.key === 'cgp' ? `<a class="credit-link" href="https://www.youtube.com/watch?t=189&si=HkSbiBZAYKMV9nf7&v=l4w6808wJcU&feature=youtu.be" target="_blank" rel="noopener noreferrer">Inspiration: CGP Grey YouTube video</a>` : ''}
+    </article>
+  `).join('');
+
+  grid.querySelectorAll('[data-preview]').forEach(card => {
+    card.addEventListener('click', () => selectPreview(card.dataset.preview));
+  });
+}
+
+function renderPicker() {
+  const picker = byId('conceptPicker');
+  const keys = ['cgp','solar','rich','other','original'];
+  picker.innerHTML = keys.map(key => `<button class="${key === activePreview ? 'active' : ''}" data-preview-button="${key}">${PREVIEW_OPTIONS[key].label}</button>`).join('');
+  picker.querySelectorAll('[data-preview-button]').forEach(button => {
+    button.addEventListener('click', () => selectPreview(button.dataset.previewButton));
+  });
+}
+
+function renderDistance(containerId, src, alt, blurs) {
+  const labels = ['Up close','50 ft','100 ft','200 ft'];
+  byId(containerId).innerHTML = labels.map((label, idx) => `
+    <div class="distance-item">
+      <div class="distance-flag" style="filter:blur(${blurs[idx]}px);">
+        <img src="${src}" alt="${alt} at ${label}" loading="lazy" decoding="async"/>
+      </div>
+      <span>${label}</span>
+    </div>
+  `).join('');
+}
+
+function selectPreview(key) {
+  activePreview = PREVIEW_OPTIONS[key] ? key : 'rich';
+  const option = PREVIEW_OPTIONS[activePreview];
+  byId('previewFlag').src = option.src;
+  byId('previewFlag').alt = option.alt;
+  byId('previewCaption').innerHTML = option.caption;
+  byId('principlePreviewLabel').textContent = option.label;
+  byId('principleDistanceSummary').textContent = option.summary;
+  renderDistance('principlePreviewDistance', option.src, option.alt, [0,1,1.8,2.8]);
+  renderPicker();
+  renderJourney();
+}
+
+function wireProgress() {
+  const deck = byId('deck');
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const progress = byId('progressText');
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries
+      .filter(entry => entry.isIntersecting)
+      .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (!visible) return;
+    const index = slides.indexOf(visible.target);
+    progress.textContent = 'Slide ' + (index + 1) + ' of ' + slides.length + ' / ' + visible.target.dataset.title;
+  }, { root:deck, threshold:[0.55,0.7,0.9] });
+  slides.forEach(slide => observer.observe(slide));
+}
+
+function init() {
+  if (DATA.originalFlag) {
+    byId('originalFlagImg').src = DATA.originalFlag.src;
+    byId('originalFlagImg').alt = DATA.originalFlag.alt;
+    byId('historyLink').href = DATA.originalFlag.historyUrl;
+  }
+  byId('pollEmail').value = loadEmail();
+  byId('pollEmail').addEventListener('input', () => {
+    if (priorVote() < 0) {
+      renderVoteGrid();
+    }
+  });
+  renderDistance('principleCurrentDistance', DATA.currentFlag.src, DATA.currentFlag.alt, [0,1,2.5,4.5]);
+  renderVoteGrid();
+  if (priorVote() >= 0) {
+    setStatus('Thanks for voting. Results are shown as percentages so the raw vote total stays private.', 'success');
+  } else if (!isValidEmail(getConfirmedEmail() || loadEmail())) {
+    setStatus('Enter your email to confirm the vote and unlock the results.', '');
+  }
+  renderPicker();
+  renderJourney();
+  selectPreview('rich');
+  wireProgress();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
