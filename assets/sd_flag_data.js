@@ -23,7 +23,7 @@ window.SD_FLAG_DATA = {
       label: 'A - Rich 3.0 Design',
       name: "Option A: Rich's 3.0 South Dakota Flag Design",
       imageDesc: 'Buffalo, Indigenous pattern work, Black Hills Spruce, pheasant, corn, East River tree, Missouri River, and South Dakota sun',
-      imageLink: 'assets/rich-final-design.png'
+      imageLink: 'assets/rich-final-design.png?v=20260606a'
     },
     {
       label: 'B - CGP Grey-Inspired Concept',
@@ -35,7 +35,7 @@ window.SD_FLAG_DATA = {
       label: 'C - Solar Horizon',
       name: 'Option C: Solar Horizon',
       imageDesc: 'Bold gold sun over South Dakota blue with a Missouri River form',
-      imageLink: 'assets/solar-horizon-design.png'
+      imageLink: 'assets/solar-horizon-design.png?v=20260606a'
     },
     {
       label: 'D - Other Concept Direction',
@@ -65,7 +65,7 @@ window.SD_FLAG_DATA = {
   previewOptions: {
     rich: {
       label: "Rich's 3.0 Design",
-      src: 'assets/rich-final-design.png',
+      src: 'assets/rich-final-design.png?v=20260606a',
       alt: "Rich's 3.0 South Dakota flag design",
       caption: "<strong>The final recommendation:</strong> A narrative-driven redesign that still keeps the flag language clean: South Dakota blue, a unified Missouri River, a Sunshine State sun, West River heritage, East River agriculture, and symbols that tell the state's story without text or a seal.",
       summary: "At 200 feet, the current flag becomes an anonymous blue field. Rich's 3.0 design keeps its main read: blue field, gold state symbols, and a central river shape."
@@ -79,7 +79,7 @@ window.SD_FLAG_DATA = {
     },
     solar: {
       label: 'Solar Horizon',
-      src: 'assets/solar-horizon-design.png',
+      src: 'assets/solar-horizon-design.png?v=20260606a',
       alt: 'Solar Horizon South Dakota flag concept',
       caption: '<strong>The simple-symbol option:</strong> A bold sun, South Dakota blue, and a Missouri River form create a direct, memorable design that is easier to recognize from far away.',
       summary: 'At 200 feet, the Solar Horizon concept keeps a clear blue field, gold sun, and river shape. It is the strongest simplicity-first direction.'
@@ -113,7 +113,7 @@ window.SD_FLAG_DATA = {
       kicker: 'Simplify The Story',
       title: 'Solar Horizon with the Missouri River',
       body: 'The next step reduces the state story to three pieces: South Dakota blue, a gold Sunshine State symbol, and a Missouri River shape that divides and connects the state.',
-      src: 'assets/solar-horizon-design.png',
+      src: 'assets/solar-horizon-design.png?v=20260606a',
       alt: 'Solar Horizon South Dakota flag concept'
     },
     {
@@ -121,7 +121,7 @@ window.SD_FLAG_DATA = {
       kicker: 'Then Add South Dakota Character',
       title: "Rich's 3.0 Design",
       body: 'The final recommendation adds narrative: buffalo and Black Hills Spruce for West River, pheasant and agriculture for East River, and the Missouri River as the unifying center.',
-      src: 'assets/rich-final-design.png',
+      src: 'assets/rich-final-design.png?v=20260606a',
       alt: "Rich's 3.0 South Dakota flag design"
     }
   ],
