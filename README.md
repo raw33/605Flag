@@ -18,6 +18,7 @@ Open `index.html` in a browser, or serve the folder with any static file server.
 - Put new image files in `assets/`
 - Update the file paths in `assets/sd_flag_data.js` if the image names change
 - Keep the asset names in sync with the files referenced in the HTML
+- Set `submissionEndpoint` in `assets/sd_flag_data.js` to the hosted form URL that will receive uploaded design submissions
 
 ## Publishing
 
@@ -36,4 +37,3 @@ git add -A
 git commit -m "Fresh start with new files"
 git push -u --force origin main
 ```
-

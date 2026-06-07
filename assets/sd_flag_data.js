@@ -2,6 +2,7 @@ window.SD_FLAG_DATA = {
   voteKey: 'sd_flag_vote_v3',
   countsKey: 'sd_flag_counts_v3',
   voteEmailKey: 'sd_flag_vote_email_v1',
+  submissionEndpoint: '', // Add your hosted form endpoint here to receive design submissions with file uploads.
   pollEndpoint: '', // Add your hosted API URL here before publishing online.
   currentFlag: {
     label: 'Current South Dakota Flag',
@@ -56,8 +57,14 @@ window.SD_FLAG_DATA = {
       imageLink: 'assets/1909-original-flag.png'
     },
     {
-      label: 'G - Open Design Call',
-      name: 'Option G: Open Design Challenge - Fresh Concept Needed',
+      label: 'G - 1909 No Words',
+      name: 'Option G: 1909 Original Flag Without Words',
+      imageDesc: 'Preference for the 1909 direction without text so the symbol reads more clearly at distance',
+      imageLink: 'assets/1909-original-flag-no-words.png'
+    },
+    {
+      label: 'H - Open Design Call',
+      name: 'Option H: Open Design Challenge - Fresh Concept Needed',
       imageDesc: 'Voter preference for an entirely new public design competition',
       imageLink: 'assets/1780708999353%20Background%20Removed.png'
     }
@@ -97,6 +104,13 @@ window.SD_FLAG_DATA = {
       alt: "South Dakota's original 1909 state flag",
       caption: '<strong>The historical option:</strong> South Dakota once had a sun-forward flag direction. Returning to that spirit could honor the original design while still inviting a cleaner modern execution.',
       summary: 'At 200 feet, the original flag reminds us why simple symbols matter: the sun reads faster than a seal, even if the old execution still needs refinement.'
+    },
+    noWords: {
+      label: '1909 No Words',
+      src: 'assets/1909-original-flag-no-words.png',
+      alt: 'South Dakota 1909 flag without words',
+      caption: '<strong>The cleaner historical option:</strong> This no-words version keeps the original 1909 spirit while removing text, making the symbol easier to read at a distance.',
+      summary: 'At 200 feet, the no-words 1909 version keeps the sun-forward idea but removes extra text that can blur into noise.'
     }
   },
   conceptJourney: [
