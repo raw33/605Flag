@@ -348,6 +348,7 @@ h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4.5vw,3.4rem); f
 .design-card.previewable { cursor:pointer; transition:transform 0.22s,border-color 0.22s,box-shadow 0.22s; }
 .design-card.previewable:hover, .design-card.previewable.active { transform:translateY(-3px); border-color:rgba(240,165,0,0.55); box-shadow:0 14px 36px rgba(0,0,0,0.32); }
 .design-card img { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; }
+.design-card.previewable img { cursor:pointer; }
 .design-card-body { padding:1.1rem; }
 .design-card h4 { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--gold-light); margin-bottom:0.45rem; }
 .design-card p { color:var(--muted); font-size:0.88rem; line-height:1.55; }
@@ -360,8 +361,24 @@ h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4.5vw,3.4rem); f
   max-width:70ch;
   margin:-0.4rem 0 1rem;
 }
+.compare-instruction {
+  margin-top:0.5rem;
+  font-size:0.78rem;
+  line-height:1.5;
+  color:rgba(253,248,240,0.62);
+}
 .concept-strip { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:0.85rem; }
-.concept-strip img { width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:4px; border:1px solid rgba(255,255,255,0.08); box-shadow:0 8px 24px rgba(0,0,0,0.28); }
+.concept-strip img {
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  border-radius:4px;
+  border:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 8px 24px rgba(0,0,0,0.28);
+  cursor:pointer;
+  transition:transform 0.18s,border-color 0.18s,box-shadow 0.18s;
+}
+.concept-strip img:hover, .concept-strip img.active { transform:translateY(-2px); border-color:rgba(240,165,0,0.55); box-shadow:0 12px 30px rgba(0,0,0,0.34); }
 .explain-panel { margin-top:3rem; background:rgba(0,0,0,0.28); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:2rem; }
 .explain-panel h3 { font-family:'Playfair Display',serif; font-size:1.45rem; color:var(--gold-light); margin-bottom:0.75rem; }
 .explain-panel h4 { font-family:'Oswald',sans-serif; font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin:1.35rem 0 0.35rem; }
@@ -503,102 +520,13 @@ footer p { font-family:'Oswald',sans-serif; font-size:0.65rem; letter-spacing:0.
         <p>The unofficial <a href="https://sodakgovs.com/2023/12/11/the-history-and-future-of-south-dakotas-state-flag/" target="_blank" rel="noopener noreferrer">SoDak Governors history of South Dakota's flag</a> walks through the 1909 original, the 1963 redesign, and the 1992 nickname update. The lesson is simple: we have changed it before. This time, we can do better.</p>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- OLD VS NEW -->
-<section id="comparison">
-  <div class="container">
-    <div class="fade-in">
-      <p class="eyebrow">Old vs. New</p>
-      <h2>A Flag Is Not a Seal.<br/><em>They Serve Different Purposes.</em></h2>
-      <p class="lead">A state seal belongs on a document — up close, packed with historical detail. A flag belongs on a pole, a jersey, a storefront. It must be instantly readable from 100 feet away. Right now, South Dakota's flag fails that test completely.</p>
-      <div class="concept-picker" aria-label="Choose a proposed flag to compare">
-        <button class="active" type="button" data-preview-option="rich">Rich 3.0</button>
-        <button type="button" data-preview-option="cgp">CGP Grey-Inspired</button>
-        <button type="button" data-preview-option="solar">Solar Horizon</button>
-        <button type="button" data-preview-option="other">Other Concept</button>
-        <button type="button" data-preview-option="original">Original 1909</button>
+    <div class="history-note fade-in">
+      <img src="assets/1909-original-flag-no-words.png" alt="South Dakota's original state flag without words" loading="lazy" decoding="async"/>
+      <div>
+        <h3>Why the no-words version still matters.</h3>
+        <p>This cleaner 1909 direction makes the flag argument more obvious: no words, one clear symbol, easy to identify from afar, and a simpler way to represent South Dakota's people and culture than the current seal-heavy flag.</p>
       </div>
-    </div>
-    <div class="compare-grid fade-in">
-      <!-- OLD FLAG SVG -->
-      <div class="flag-panel">
-        <span class="panel-label old">&#10007; Current Flag &#8212; 1992</span>
-        <div class="flag-render">
-          <img src="assets/Flag_of_South_Dakota.svg.png" alt="Current South Dakota state flag" loading="lazy" decoding="async"/>
-        </div>
-        <p class="flag-caption"><strong>The problem:</strong> South Dakota's 1992 flag crams the entire Great Seal — farmsteads, steamboats, miners, and legal text — onto a blue field nearly identical to dozens of other states. On a flagpole at 50 feet it is an unreadable smudge. The seal belongs on documents, not flags.</p>
-      </div>
-      <!-- NEW FLAG (embedded) -->
-      <div class="flag-panel">
-        <span class="panel-label new" id="comparisonDesignLabel">&#10003; Rich's Final Design &#8212; Subject to Public Vote</span>
-        <div class="flag-render">
-          <img id="proposedFlagImg" src="assets/rich-final-design.png?v=20260606a" alt="Rich's 3.0 South Dakota flag design" loading="lazy" decoding="async"/>
-        </div>
-        <p class="flag-caption" id="comparisonDesignCaption"><strong>The opportunity:</strong> A narrative-driven redesign that still keeps the flag language clean: South Dakota blue, a unified Missouri River, a Sunshine State sun, West River heritage, East River agriculture, and symbols that tell the state's story without text or a seal.</p>
-      </div>
-    </div>
-    <!-- DISTANCE TEST -->
-    <div class="distance-demo fade-in">
-      <h3>The Distance Test — How Flags Are Actually Seen</h3>
-      <p>Flags are not read — they are recognized in an instant. As distance increases, fine detail collapses into noise. A seal designed for close inspection becomes invisible on a flagpole. A bold symbol holds its identity at every scale.</p>
-      <div class="distance-compare">
-        <div class="distance-group">
-          <div class="blur-item">
-            <div class="blur-flag">
-              <img src="assets/Flag_of_South_Dakota.svg.png" width="120" height="80" alt="Current South Dakota flag up close" loading="lazy" decoding="async"/>
-            </div>
-            <span class="dist-label">Up close</span>
-          </div>
-          <div class="blur-item">
-            <div class="blur-flag" style="filter:blur(1px);">
-              <img src="assets/Flag_of_South_Dakota.svg.png" width="120" height="80" alt="Current South Dakota flag at 50 feet" loading="lazy" decoding="async"/>
-            </div>
-            <span class="dist-label">50 ft</span>
-          </div>
-          <div class="blur-item">
-            <div class="blur-flag" style="filter:blur(2.5px);">
-              <img src="assets/Flag_of_South_Dakota.svg.png" width="120" height="80" alt="Current South Dakota flag at 100 feet" loading="lazy" decoding="async"/>
-            </div>
-            <span class="dist-label">100 ft</span>
-          </div>
-          <div class="blur-item">
-            <div class="blur-flag" style="filter:blur(4.5px);">
-              <img src="assets/Flag_of_South_Dakota.svg.png" width="120" height="80" alt="Current South Dakota flag at 200 feet" loading="lazy" decoding="async"/>
-            </div>
-            <span class="dist-label">200 ft</span>
-          </div>
-        </div>
-        <div class="distance-separator" aria-hidden="true">#</div>
-        <div class="distance-group">
-          <div class="blur-item">
-            <div class="blur-flag">
-              <img id="demoNew0" src="assets/rich-final-design.png?v=20260606a" width="120" height="80" alt="Rich's 3.0 flag design up close" loading="lazy" decoding="async"/>
-            </div>
-            <span class="dist-label">Up close</span>
-          </div>
-          <div class="blur-item">
-            <div class="blur-flag" style="filter:blur(1px);">
-              <img id="demoNew1" src="assets/rich-final-design.png?v=20260606a" width="120" height="80" alt="Rich's 3.0 flag design at 50 feet" loading="lazy" decoding="async"/>
-            </div>
-            <span class="dist-label">50 ft</span>
-          </div>
-          <div class="blur-item">
-            <div class="blur-flag" style="filter:blur(1.8px);">
-              <img id="demoNew2" src="assets/rich-final-design.png?v=20260606a" width="120" height="80" alt="Rich's 3.0 flag design at 100 feet" loading="lazy" decoding="async"/>
-            </div>
-            <span class="dist-label">100 ft</span>
-          </div>
-          <div class="blur-item">
-            <div class="blur-flag" style="filter:blur(2.8px);">
-              <img id="demoNew3" src="assets/rich-final-design.png?v=20260606a" width="120" height="80" alt="Rich's 3.0 flag design at 200 feet" loading="lazy" decoding="async"/>
-            </div>
-            <span class="dist-label">200 ft</span>
-          </div>
-        </div>
-      </div>
-      <p id="distanceSummary" style="margin-top:1.25rem; font-size:0.85rem; color:var(--muted); font-style:italic;">At 200 feet, the current flag becomes an anonymous blue field. Rich's 3.0 design keeps its main read: blue field, gold state symbols, and a central river shape.</p>
     </div>
   </div>
 </section>
@@ -663,17 +591,103 @@ footer p { font-family:'Oswald',sans-serif; font-size:0.65rem; letter-spacing:0.
     <div class="other-concepts fade-in">
       <h3>Other designs submitted</h3>
       <p class="other-concepts-note">We want this to be a community engagement effort, and we would love to have artists submit their own designs.</p>
+      <p class="compare-instruction">Click any design image below to load it into the distance comparison after this section.</p>
       <div class="concept-strip">
-        <img src="assets/1780708840131 Background Removed.png" alt="South Dakota flag concept option" loading="lazy" decoding="async"/>
-        <img src="assets/1780708944141 Background Removed.png" alt="South Dakota flag concept option" loading="lazy" decoding="async"/>
-        <img src="assets/1780708974833 Background Removed.png" alt="South Dakota flag concept option" loading="lazy" decoding="async"/>
-        <img src="assets/1780708999353 Background Removed.png" alt="South Dakota flag concept option" loading="lazy" decoding="async"/>
-        <img src="assets/Gemini_Generated_Image_9cr89p9cr89p9cr8 Background Removed.png" alt="South Dakota flag concept option" loading="lazy" decoding="async"/>
-        <img src="assets/Gemini_Generated_Image_uu5of4uu5of4uu5o Background Removed.png" alt="South Dakota flag concept option" loading="lazy" decoding="async"/>
-        <img src="assets/other-concept-bg-removed.png" alt="South Dakota flag concept option" loading="lazy" decoding="async"/>
-        <img src="assets/1780708861730 Background Removed.png" alt="South Dakota flag concept option" loading="lazy" decoding="async"/>
+        <img src="assets/1780708840131 Background Removed.png" alt="South Dakota flag concept option" data-preview-src="assets/1780708840131 Background Removed.png" data-preview-alt="South Dakota flag concept option" data-preview-label="Community Submission" data-preview-summary="A community submission previewed in the distance test." tabindex="0" role="button" title="Click to compare this design" loading="lazy" decoding="async"/>
+        <img src="assets/1780708944141 Background Removed.png" alt="South Dakota flag concept option" data-preview-src="assets/1780708944141 Background Removed.png" data-preview-alt="South Dakota flag concept option" data-preview-label="Community Submission" data-preview-summary="A community submission previewed in the distance test." tabindex="0" role="button" title="Click to compare this design" loading="lazy" decoding="async"/>
+        <img src="assets/1780708974833 Background Removed.png" alt="South Dakota flag concept option" data-preview-src="assets/1780708974833 Background Removed.png" data-preview-alt="South Dakota flag concept option" data-preview-label="Community Submission" data-preview-summary="A community submission previewed in the distance test." tabindex="0" role="button" title="Click to compare this design" loading="lazy" decoding="async"/>
+        <img src="assets/1780708999353 Background Removed.png" alt="South Dakota flag concept option" data-preview-src="assets/1780708999353 Background Removed.png" data-preview-alt="South Dakota flag concept option" data-preview-label="Community Submission" data-preview-summary="A community submission previewed in the distance test." tabindex="0" role="button" title="Click to compare this design" loading="lazy" decoding="async"/>
+        <img src="assets/Gemini_Generated_Image_9cr89p9cr89p9cr8 Background Removed.png" alt="South Dakota flag concept option" data-preview-src="assets/Gemini_Generated_Image_9cr89p9cr89p9cr8 Background Removed.png" data-preview-alt="South Dakota flag concept option" data-preview-label="Community Submission" data-preview-summary="A community submission previewed in the distance test." tabindex="0" role="button" title="Click to compare this design" loading="lazy" decoding="async"/>
+        <img src="assets/Gemini_Generated_Image_uu5of4uu5of4uu5o Background Removed.png" alt="South Dakota flag concept option" data-preview-src="assets/Gemini_Generated_Image_uu5of4uu5of4uu5o Background Removed.png" data-preview-alt="South Dakota flag concept option" data-preview-label="Community Submission" data-preview-summary="A community submission previewed in the distance test." tabindex="0" role="button" title="Click to compare this design" loading="lazy" decoding="async"/>
+        <img src="assets/other-concept-bg-removed.png" alt="South Dakota flag concept option" data-preview-src="assets/other-concept-bg-removed.png" data-preview-alt="South Dakota flag concept option" data-preview-label="Community Submission" data-preview-summary="A community submission previewed in the distance test." tabindex="0" role="button" title="Click to compare this design" loading="lazy" decoding="async"/>
+        <img src="assets/1780708861730 Background Removed.png" alt="South Dakota flag concept option" data-preview-src="assets/1780708861730 Background Removed.png" data-preview-alt="South Dakota flag concept option" data-preview-label="Community Submission" data-preview-summary="A community submission previewed in the distance test." tabindex="0" role="button" title="Click to compare this design" loading="lazy" decoding="async"/>
       </div>
     </div>
+
+    <!-- OLD VS NEW -->
+    <section id="comparison">
+      <div class="fade-in">
+        <p class="eyebrow">Old vs. New</p>
+        <h2>A Flag Is Not a Seal.<br/><em>They Serve Different Purposes.</em></h2>
+        <p class="lead">A state seal belongs on a document - up close, packed with historical detail. A flag belongs on a pole, a jersey, a storefront. It must be instantly readable from 100 feet away. Right now, South Dakota's flag fails that test completely.</p>
+      </div>
+      <div class="compare-grid fade-in">
+        <div class="flag-panel">
+          <span class="panel-label old">&#10007; Current Flag &#8212; 1992</span>
+          <div class="flag-render">
+            <img src="assets/Flag_of_South_Dakota.svg.png" alt="Current South Dakota state flag" loading="lazy" decoding="async"/>
+          </div>
+          <p class="flag-caption"><strong>The problem:</strong> South Dakota's 1992 flag crams the entire Great Seal - farmsteads, steamboats, miners, and legal text - onto a blue field nearly identical to dozens of other states. On a flagpole at 50 feet it is an unreadable smudge. The seal belongs on documents, not flags.</p>
+        </div>
+        <div class="flag-panel">
+          <span class="panel-label new" id="comparisonDesignLabel">&#10003; Rich's Final Design &#8212; Subject to Public Vote</span>
+          <div class="flag-render">
+            <img id="proposedFlagImg" src="assets/rich-final-design.png?v=20260606a" alt="Rich's 3.0 South Dakota flag design" loading="lazy" decoding="async"/>
+          </div>
+          <p class="flag-caption" id="comparisonDesignCaption"><strong>The opportunity:</strong> A narrative-driven redesign that still keeps the flag language clean: South Dakota blue, a unified Missouri River, a Sunshine State sun, West River heritage, East River agriculture, and symbols that tell the state's story without text or a seal.</p>
+        </div>
+      </div>
+      <div class="distance-demo fade-in">
+        <h3>The Distance Test - How Flags Are Actually Seen</h3>
+        <p>Flags are not read - they are recognized in an instant. As distance increases, fine detail collapses into noise. A seal designed for close inspection becomes invisible on a flagpole. A bold symbol holds its identity at every scale.</p>
+        <div class="distance-compare">
+          <div class="distance-group">
+            <div class="blur-item">
+              <div class="blur-flag">
+                <img src="assets/Flag_of_South_Dakota.svg.png" width="120" height="80" alt="Current South Dakota flag up close" loading="lazy" decoding="async"/>
+              </div>
+              <span class="dist-label">Up close</span>
+            </div>
+            <div class="blur-item">
+              <div class="blur-flag" style="filter:blur(1px);">
+                <img src="assets/Flag_of_South_Dakota.svg.png" width="120" height="80" alt="Current South Dakota flag at 50 feet" loading="lazy" decoding="async"/>
+              </div>
+              <span class="dist-label">50 ft</span>
+            </div>
+            <div class="blur-item">
+              <div class="blur-flag" style="filter:blur(2.5px);">
+                <img src="assets/Flag_of_South_Dakota.svg.png" width="120" height="80" alt="Current South Dakota flag at 100 feet" loading="lazy" decoding="async"/>
+              </div>
+              <span class="dist-label">100 ft</span>
+            </div>
+            <div class="blur-item">
+              <div class="blur-flag" style="filter:blur(4.5px);">
+                <img src="assets/Flag_of_South_Dakota.svg.png" width="120" height="80" alt="Current South Dakota flag at 200 feet" loading="lazy" decoding="async"/>
+              </div>
+              <span class="dist-label">200 ft</span>
+            </div>
+          </div>
+          <div class="distance-separator" aria-hidden="true">#</div>
+          <div class="distance-group">
+            <div class="blur-item">
+              <div class="blur-flag">
+                <img id="demoNew0" src="assets/rich-final-design.png?v=20260606a" width="120" height="80" alt="Rich's 3.0 flag design up close" loading="lazy" decoding="async"/>
+              </div>
+              <span class="dist-label">Up close</span>
+            </div>
+            <div class="blur-item">
+              <div class="blur-flag" style="filter:blur(1px);">
+                <img id="demoNew1" src="assets/rich-final-design.png?v=20260606a" width="120" height="80" alt="Rich's 3.0 flag design at 50 feet" loading="lazy" decoding="async"/>
+              </div>
+              <span class="dist-label">50 ft</span>
+            </div>
+            <div class="blur-item">
+              <div class="blur-flag" style="filter:blur(1.8px);">
+                <img id="demoNew2" src="assets/rich-final-design.png?v=20260606a" width="120" height="80" alt="Rich's 3.0 flag design at 100 feet" loading="lazy" decoding="async"/>
+              </div>
+              <span class="dist-label">100 ft</span>
+            </div>
+            <div class="blur-item">
+              <div class="blur-flag" style="filter:blur(2.8px);">
+                <img id="demoNew3" src="assets/rich-final-design.png?v=20260606a" width="120" height="80" alt="Rich's 3.0 flag design at 200 feet" loading="lazy" decoding="async"/>
+              </div>
+              <span class="dist-label">200 ft</span>
+            </div>
+          </div>
+        </div>
+        <p id="distanceSummary" style="margin-top:1.25rem; font-size:0.85rem; color:var(--muted); font-style:italic;">At 200 feet, the current flag becomes an anonymous blue field. Rich's 3.0 design keeps its main read: blue field, gold state symbols, and a central river shape.</p>
+      </div>
+    </section>
 
     <div class="explain-panel fade-in">
       <h3>Rich 3.0 design explained</h3>
@@ -988,6 +1002,7 @@ const POLL_ENDPOINT = SHARED_DATA.pollEndpoint || '';
 const OPTIONS = SHARED_DATA.options || [];
 const OPTION_LETTERS = OPTIONS.map((_, idx) => String.fromCharCode(65 + idx));
 const PREVIEW_OPTIONS = SHARED_DATA.previewOptions || {};
+let activePreviewKey = 'rich';
 
 function placeStorySections() {
   const history = document.getElementById('history');
@@ -997,8 +1012,8 @@ function placeStorySections() {
   }
 }
 
-function selectPreviewDesign(key) {
-  const option = PREVIEW_OPTIONS[key] || PREVIEW_OPTIONS.rich;
+function applyPreviewDesign(option, key, customActiveSelector) {
+  activePreviewKey = key;
   document.getElementById('comparisonDesignLabel').innerHTML = '&#10003; ' + option.label + ' &#8212; Subject to Public Vote';
   document.getElementById('proposedFlagImg').src = option.src;
   document.getElementById('proposedFlagImg').alt = option.alt;
@@ -1014,6 +1029,25 @@ function selectPreviewDesign(key) {
   document.querySelectorAll('[data-preview-option]').forEach(el => {
     el.classList.toggle('active', el.dataset.previewOption === key);
   });
+  document.querySelectorAll('[data-preview-src]').forEach(el => {
+    el.classList.toggle('active', customActiveSelector ? el === customActiveSelector : false);
+  });
+}
+
+function selectPreviewDesign(key) {
+  const option = PREVIEW_OPTIONS[key] || PREVIEW_OPTIONS.rich;
+  applyPreviewDesign(option, key, null);
+}
+
+function selectCustomPreview(el) {
+  const option = {
+    label: el.dataset.previewLabel || 'Community Submission',
+    src: el.dataset.previewSrc,
+    alt: el.dataset.previewAlt || el.alt || 'Community submission flag concept',
+    caption: el.dataset.previewCaption || '<strong>Community submission:</strong> This concept is being shown in the distance test so it can be judged by shape, color, and readability from afar.',
+    summary: el.dataset.previewSummary || 'This community submission can be judged at distance by its shape, color, and simplicity.'
+  };
+  applyPreviewDesign(option, 'custom:' + option.src, el);
 }
 
 function wirePreviewSelectors() {
@@ -1023,6 +1057,15 @@ function wirePreviewSelectors() {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
         selectPreviewDesign(el.dataset.previewOption);
+      }
+    });
+  });
+  document.querySelectorAll('[data-preview-src]').forEach(el => {
+    el.addEventListener('click', () => selectCustomPreview(el));
+    el.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        selectCustomPreview(el);
       }
     });
   });
