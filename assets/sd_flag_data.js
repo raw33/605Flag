@@ -133,6 +133,7 @@ window.SD_FLAG_DATA = {
     'assets/1780708999353 Background Removed.png',
     'assets/Gemini_Generated_Image_9cr89p9cr89p9cr8 Background Removed.png',
     'assets/Gemini_Generated_Image_uu5of4uu5of4uu5o Background Removed.png',
-    'assets/other-concept-bg-removed.png'
+    'assets/other-concept-bg-removed.png',
+    'assets/1909-original-flag-no-words.png'
   ]
 };
